@@ -5,13 +5,13 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'Tashkylty',
+    redirectTo: 'E-Commerce',
     pathMatch: 'full',
   },
   {
-    path: 'Tashkylty',
-    component: AppComponent,
-    pathMatch: 'full',
+    path: 'E-Commerce',
+    loadChildren: () =>
+      import('./e-commerce/e-commerce.module').then((m) => m.ECommerceModule),
   },
 ];
 
