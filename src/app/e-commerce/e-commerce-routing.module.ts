@@ -19,6 +19,10 @@ const routes: Routes = [
     component: CartComponent,
     pathMatch: 'full',
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('../auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({

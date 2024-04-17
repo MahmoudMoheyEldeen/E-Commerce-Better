@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './shared-components/footer/footer.component';
 
 const routes: Routes = [
   {

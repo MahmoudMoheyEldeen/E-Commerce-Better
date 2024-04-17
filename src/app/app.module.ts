@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { MenubarModule } from 'primeng/menubar';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,6 +16,7 @@ import { MenubarModule } from 'primeng/menubar';
     HeaderComponent,
     FooterComponent,
     MenubarModule,
+    DynamicDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
