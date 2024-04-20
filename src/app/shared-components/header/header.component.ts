@@ -30,8 +30,8 @@ export class HeaderComponent {
 
   show() {
     const ref = this.dialogService.open(LoginComponent, {
-      header: 'Choose a Car',
       width: '50%',
+      closeOnEscape: true,
     });
   }
 }
