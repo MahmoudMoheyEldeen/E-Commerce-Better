@@ -99,6 +99,34 @@ export class HomeComponent implements OnInit {
       Image: 'assets/images/kitchen.jpeg',
     },
   ];
+
+  products: any[] = [
+    {
+      name: 'GC Bag',
+      image: 'assets/images/bag.jpeg',
+      price: '1200EGP',
+      category: 'Women Bags',
+      reviews: '5',
+      status: 'INSTOCK',
+      rating: '3',
+    },
+    {
+      name: 'GC Bag',
+      image: 'assets/images/bag.jpeg',
+      price: '1200EGP',
+      category: 'Women Bags',
+      reviews: '5',
+      status: 'LOWSTOCK',
+    },
+    {
+      name: 'GC Bag',
+      image: 'assets/images/bag.jpeg',
+      price: '1200EGP',
+      category: 'Women Bags',
+      reviews: '5',
+      status: 'OUTOFSTOCK',
+    },
+  ];
   ngOnInit(): void {
     this.responsiveOptions = [
       {
@@ -117,5 +145,15 @@ export class HomeComponent implements OnInit {
         numScroll: 1,
       },
     ];
+  }
+  getSeverity(status: string): any {
+    switch (status) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warning';
+      case 'OUTOFSTOCK':
+        return 'danger';
+    }
   }
 }
