@@ -39,15 +39,15 @@
     <div class="row row-for-categories mt-2">
         <div class="container-fluid">
             <div class="card">
-                <p-carousel [value]="categories" [numVisible]="10" [numScroll]="3" [circular]="false"
+                <p-carousel [value]="categoriesImages" [numVisible]="10" [numScroll]="3" [circular]="false"
                     [autoplayInterval]="3000">
-                    <ng-template let-category pTemplate="item">
+                    <ng-template let-categoryImage pTemplate="item">
                         <div class=" col categ-image border-round text-center  pt-2 ">
                             <div class="mb-3">
-                                <img [src]="category.Image" [alt]="category.name" class="w-6 shadow-2" />
+                                <img [src]="categoryImage.Image" [alt]="categoryImage.name" class="w-6 shadow-2" />
                             </div>
                             <div>
-                                <h6 class="mb-1">{{ category.name }}</h6>
+                                <h6 class="mb-1">{{ categoryImage.name }}</h6>
                             </div>
                         </div>
                     </ng-template>

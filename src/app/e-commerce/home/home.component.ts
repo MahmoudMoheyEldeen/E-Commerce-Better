@@ -10,7 +10,100 @@ import { Category, Product } from '../../interfaces/product';
 export class HomeComponent implements OnInit {
   constructor(private _productService: ProductsService) {}
   responsiveOptions: any[] | undefined;
+  categoriesImages: any[] = [
+    {
+      name: 'Fragrances',
+      Image: 'assets/images/fragrances.jpg',
+    },
+    {
+      name: 'Bags & Luggage',
+
+      Image: 'assets/images/bags.jpeg',
+    },
+    {
+      name: 'Personal Care',
+      Image: 'assets/images/body.jpeg',
+    },
+    {
+      name: 'Automotives',
+      Image: 'assets/images/cars.jpeg',
+    },
+    {
+      name: 'Diapers',
+      Image: 'assets/images/diapers.jpeg',
+    },
+    {
+      name: 'Fragnances',
+      Image: 'assets/images/fragrances.jpg',
+    },
+    {
+      name: 'Furniture',
+      Image: 'assets/images/furniture.jpeg',
+    },
+    {
+      name: 'Hair Care',
+      Image: 'assets/images/hair.jpeg',
+    },
+    {
+      name: 'Health',
+      Image: 'assets/images/health.jpeg',
+    },
+    {
+      name: 'Home Tools',
+      Image: 'assets/images/hometools.jpeg',
+    },
+    {
+      name: 'Kitchen Tools',
+      Image: 'assets/images/kitchen.jpeg',
+    },
+    {
+      name: 'Fragrances',
+      Image: 'assets/images/fragrances.jpg',
+    },
+    {
+      name: 'Bags & Luggage',
+
+      Image: 'assets/images/bags.jpeg',
+    },
+    {
+      name: 'Personal Care',
+      Image: 'assets/images/body.jpeg',
+    },
+    {
+      name: 'Automotives',
+      Image: 'assets/images/cars.jpeg',
+    },
+    {
+      name: 'Diapers',
+      Image: 'assets/images/diapers.jpeg',
+    },
+    {
+      name: 'Fragnances',
+      Image: 'assets/images/fragrances.jpg',
+    },
+    {
+      name: 'Furniture',
+      Image: 'assets/images/furniture.jpeg',
+    },
+    {
+      name: 'Hair Care',
+      Image: 'assets/images/hair.jpeg',
+    },
+    {
+      name: 'Health',
+      Image: 'assets/images/health.jpeg',
+    },
+    {
+      name: 'Home Tools',
+      Image: 'assets/images/hometools.jpeg',
+    },
+    {
+      name: 'Kitchen Tools',
+      Image: 'assets/images/kitchen.jpeg',
+    },
+  ];
   categories: Category[] = [];
+
   //     name: 'GC Bag',
   //     image: 'assets/images/bag.jpeg',
   //     price: '1200EGP',
