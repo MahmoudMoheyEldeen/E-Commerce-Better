@@ -170,6 +170,7 @@ export class HomeComponent implements OnInit {
   //   },
   // ];
   products: Product[] = [];
+
   ngOnInit(): void {
     this.getAllProduct();
     this.responsiveOptions = [

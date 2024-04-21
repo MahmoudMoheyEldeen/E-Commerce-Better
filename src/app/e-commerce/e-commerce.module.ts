@@ -9,6 +9,8 @@ import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { ButtonModule } from 'primeng/button';
+import { Paginator, PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [HomeComponent, CartComponent],
@@ -17,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
     ECommerceRoutingModule,
     CarouselModule,
     TableModule,
+    PaginatorModule,
+    ButtonModule,
     RatingModule,
     TagModule,
     FormsModule,
