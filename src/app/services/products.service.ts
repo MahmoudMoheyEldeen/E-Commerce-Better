@@ -12,4 +12,7 @@ export class ProductsService {
   getAllProducts(): Observable<any> {
     return this._httpClient.get(`${this.baseUrl}/products`);
   }
+  getAllCategories(): Observable<any> {
+    return this._httpClient.get(`${this.baseUrl}/products/categories`);
+  }
 }

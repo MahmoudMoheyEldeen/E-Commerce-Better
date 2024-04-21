@@ -1,6 +1,6 @@
 import { Component, OnInit, afterNextRender } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
-import { Product } from '../../interfaces/product';
+import { Category, Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-home',
@@ -10,98 +10,7 @@ import { Product } from '../../interfaces/product';
 export class HomeComponent implements OnInit {
   constructor(private _productService: ProductsService) {}
   responsiveOptions: any[] | undefined;
-  categories: any[] = [
-    {
-      name: 'Fragrances',
-      Image: 'assets/images/fragrances.jpg',
-    },
-    {
-      name: 'Bags & Luggage',
-
-      Image: 'assets/images/bags.jpeg',
-    },
-    {
-      name: 'Personal Care',
-      Image: 'assets/images/body.jpeg',
-    },
-    {
-      name: 'Automotives',
-      Image: 'assets/images/cars.jpeg',
-    },
-    {
-      name: 'Diapers',
-      Image: 'assets/images/diapers.jpeg',
-    },
-    {
-      name: 'Fragnances',
-      Image: 'assets/images/fragrances.jpg',
-    },
-    {
-      name: 'Furniture',
-      Image: 'assets/images/furniture.jpeg',
-    },
-    {
-      name: 'Hair Care',
-      Image: 'assets/images/hair.jpeg',
-    },
-    {
-      name: 'Health',
-      Image: 'assets/images/health.jpeg',
-    },
-    {
-      name: 'Home Tools',
-      Image: 'assets/images/hometools.jpeg',
-    },
-    {
-      name: 'Kitchen Tools',
-      Image: 'assets/images/kitchen.jpeg',
-    },
-    {
-      name: 'Fragrances',
-      Image: 'assets/images/fragrances.jpg',
-    },
-    {
-      name: 'Bags & Luggage',
-
-      Image: 'assets/images/bags.jpeg',
-    },
-    {
-      name: 'Personal Care',
-      Image: 'assets/images/body.jpeg',
-    },
-    {
-      name: 'Automotives',
-      Image: 'assets/images/cars.jpeg',
-    },
-    {
-      name: 'Diapers',
-      Image: 'assets/images/diapers.jpeg',
-    },
-    {
-      name: 'Fragnances',
-      Image: 'assets/images/fragrances.jpg',
-    },
-    {
-      name: 'Furniture',
-      Image: 'assets/images/furniture.jpeg',
-    },
-    {
-      name: 'Hair Care',
-      Image: 'assets/images/hair.jpeg',
-    },
-    {
-      name: 'Health',
-      Image: 'assets/images/health.jpeg',
-    },
-    {
-      name: 'Home Tools',
-      Image: 'assets/images/hometools.jpeg',
-    },
-    {
-      name: 'Kitchen Tools',
-      Image: 'assets/images/kitchen.jpeg',
-    },
-  ];
+  categories: Category[] = [];
 
   //     name: 'GC Bag',
   //     image: 'assets/images/bag.jpeg',
@@ -173,6 +82,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProduct();
+    this.getAllCategories();
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -205,6 +115,16 @@ export class HomeComponent implements OnInit {
     this._productService.getAllProducts().subscribe({
       next: (resp) => {
         this.products = resp;
+      },
+      error: (error) => {
+        console.log('error');
+      },
+    });
+  }
+  getAllCategories() {
+    this._productService.getAllCategories().subscribe({
+      next: (resp) => {
+        this.categories = resp;
       },
       error: (error) => {
         console.log('error');

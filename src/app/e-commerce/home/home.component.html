@@ -64,8 +64,12 @@
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[10, 25, 50]">
                     <ng-template pTemplate="caption">
-                        <div class="flex align-items-center justify-content-between">
-                            Products
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p>Products</p>
+                            <select name="" id="">
+                                <option value="">All</option>
+                                <option value="" *ngFor="let category of categories">{{category}}</option>
+                            </select>
                         </div>
                     </ng-template>
                     <ng-template let-product pTemplate="header">
