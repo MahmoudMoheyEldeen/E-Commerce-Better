@@ -8,6 +8,7 @@ import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 @NgModule({
   declarations: [HomeComponent, CartComponent],
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     RatingModule,
     TagModule,
     FormsModule,
+    HttpClientModule,
   ],
 })
 export class ECommerceModule {}

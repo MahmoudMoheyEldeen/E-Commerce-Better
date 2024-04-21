@@ -65,19 +65,20 @@
                             Products
                         </div>
                     </ng-template>
-                    <ng-template pTemplate="header">
+                    <ng-template let-product pTemplate="header">
                         <tr>
-                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Title</th>
                             <th>Image</th>
                             <th>Price</th>
                             <th>Category</th>
-                            <th>Reviews</th>
-                            <th>Status</th>
+                            <th>Rating</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
                         <tr>
-                            <td>{{product.name}}</td>
+                            <td>{{product.id}}</td>
+                            <td>{{product.title}}</td>
                             <td><img [src]="product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
                             <td>{{product.price}}</td>
                             <td>{{product.category}}</td>
@@ -92,6 +93,7 @@
                     </ng-template>
                 </p-table>
             </div>
+
         </div>
     </div>
 </div>
