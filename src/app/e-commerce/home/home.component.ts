@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit {
   constructor(private _productService: ProductsService) {}
   responsiveOptions: any[] | undefined;
   categories: Category[] = [];
-
   //     name: 'GC Bag',
   //     image: 'assets/images/bag.jpeg',
   //     price: '1200EGP',
@@ -79,6 +78,7 @@ export class HomeComponent implements OnInit {
   //   },
   // ];
   products: Product[] = [];
+  dropdownCategTerm: string = 'All';
 
   ngOnInit(): void {
     this.getAllProduct();

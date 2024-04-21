@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { ButtonModule } from 'primeng/button';
 import { Paginator, PaginatorModule } from 'primeng/paginator';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [HomeComponent, CartComponent],
@@ -18,6 +19,7 @@ import { Paginator, PaginatorModule } from 'primeng/paginator';
     CommonModule,
     ECommerceRoutingModule,
     CarouselModule,
+    FormsModule,
     TableModule,
     PaginatorModule,
     ButtonModule,
@@ -25,6 +27,7 @@ import { Paginator, PaginatorModule } from 'primeng/paginator';
     TagModule,
     FormsModule,
     HttpClientModule,
+    PipesModule,
   ],
 })
 export class ECommerceModule {}

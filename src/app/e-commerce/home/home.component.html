@@ -59,16 +59,16 @@
     <div class="row row-for-allProducts">
         <div class="col-12">
             <div class="card">
-                <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
-                    [showCurrentPageReport]="true"
+                <p-table [value]="products | dropdownCateg : dropdownCategTerm" [tableStyle]="{'min-width': '60rem'}"
+                    [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[10, 25, 50]">
                     <ng-template pTemplate="caption">
                         <div class="d-flex align-items-center justify-content-between">
                             <p>Products</p>
-                            <select name="" id="">
-                                <option value="">All</option>
-                                <option value="" *ngFor="let category of categories">{{category}}</option>
+                            <select name="" id="" [(ngModel)]="dropdownCategTerm">
+                                <option value="All">All</option>
+                                <option [value]='category' *ngFor="let category of categories">{{category}}</option>
                             </select>
                         </div>
                     </ng-template>
