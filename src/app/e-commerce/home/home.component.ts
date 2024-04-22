@@ -102,78 +102,14 @@ export class HomeComponent implements OnInit {
       Image: 'assets/images/kitchen.jpeg',
     },
   ];
+
   categories: Category[] = [];
-
-  //     name: 'GC Bag',
-  //     image: 'assets/images/bag.jpeg',
-  //     price: '1200EGP',
-  //     category: 'Women Bags',
-  //     reviews: '5',
-  //     status: 'INSTOCK',
-  //     rating: '3',
-  //   },
-  //   {
-  //     name: 'Woman Bracelete MX',
-  //     image: 'assets/images/brac.jpeg',
-  //     price: '25000EGP',
-  //     category: 'Women Bags',
-  //     reviews: '5',
-  //     status: 'LOWSTOCK',
-  //     rating: '4',
-  //   },
-  //   {
-  //     name: 'Nike Shoes',
-  //     image: 'assets/images/shoes.jpeg',
-
-  //     price: '5000EGP',
-  //     category: 'Men Wear',
-  //     reviews: '5',
-  //     status: 'OUTOFSTOCK',
-  //     rating: '5',
-  //   },
-  //   {
-  //     name: 'Watch Quartz',
-  //     image: 'assets/images/watchccc.jpeg',
-  //     price: '4300EGP',
-  //     category: 'Men Accessories',
-  //     reviews: '5',
-  //     status: 'INSTOCK',
-  //     rating: '3',
-  //   },
-  //   {
-  //     name: 'Tie GC',
-  //     image: 'assets/images/tie.jpeg',
-  //     price: '1200EGP',
-  //     category: 'Men Suits',
-  //     reviews: '5',
-  //     status: 'LOWSTOCK',
-  //     rating: '1',
-  //   },
-  //   {
-  //     name: 'Watch',
-  //     image: 'assets/images/watch.jpg',
-
-  //     price: '22000EGP',
-  //     category: 'Women Bags',
-  //     reviews: '5',
-  //     status: 'INSTOCK',
-  //     rating: '5',
-  //   },
-  //   {
-  //     name: 'Shoes',
-  //     image: 'assets/images/shoesss.jpeg',
-
-  //     price: '7000EGP',
-  //     category: 'Shoes Men',
-  //     reviews: '5',
-  //     status: 'OUTOFSTOCK',
-  //     rating: '2',
-  //   },
-  // ];
+  rowsPerPageOptions: number[] = [];
   products: Product[] = [];
   dropdownCategTerm: string = 'All';
 
   ngOnInit(): void {
+    this.getProductLimit(5);
     this.getAllProduct();
     this.getAllCategories();
     this.responsiveOptions = [
@@ -223,5 +159,23 @@ export class HomeComponent implements OnInit {
         console.log('error');
       },
     });
+  }
+
+  getProductLimit(limit: number) {
+    this._productService.getProductLimit(limit).subscribe({
+      next: (resp) => {
+        this.products = resp;
+        console.log(this.products);
+        this.rowsPerPageOptions = this.generateRowsPerPageOptions(limit);
+      },
+      error: (error) => {
+        console.log('error');
+      },
+    });
+  }
+
+  generateRowsPerPageOptions(limit: number): number[] {
+    // Generate rows per page options based on the limit
+    return [limit, limit * 2, limit * 3];
   }
 }

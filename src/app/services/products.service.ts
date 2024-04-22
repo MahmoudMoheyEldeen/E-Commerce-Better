@@ -15,4 +15,7 @@ export class ProductsService {
   getAllCategories(): Observable<any> {
     return this._httpClient.get(`${this.baseUrl}/products/categories`);
   }
+  getProductLimit(limit: number): Observable<any> {
+    return this._httpClient.get(`${this.baseUrl}/products?limit=${limit}`);
+  }
 }
