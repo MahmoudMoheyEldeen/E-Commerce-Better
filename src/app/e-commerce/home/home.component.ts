@@ -1,6 +1,7 @@
 import { Component, OnInit, afterNextRender } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Category, Product } from '../../interfaces/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,10 @@ import { Category, Product } from '../../interfaces/product';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private _productService: ProductsService) {}
+  constructor(
+    private _productService: ProductsService,
+    private _router: Router
+  ) {}
   responsiveOptions: any[] | undefined;
   categoriesImages: any[] = [
     {
@@ -102,6 +106,7 @@ export class HomeComponent implements OnInit {
       Image: 'assets/images/kitchen.jpeg',
     },
   ];
+  productID: number = 0;
 
   categories: Category[] = [];
   rowsPerPageOptions: number[] = [];

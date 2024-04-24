@@ -18,4 +18,8 @@ export class ProductsService {
   getProductLimit(limit: number): Observable<any> {
     return this._httpClient.get(`${this.baseUrl}/products?limit=${limit}`);
   }
+
+  getSpecificProduct(id: number): Observable<any> {
+    return this._httpClient.get(`${this.baseUrl}/products/${id}`);
+  }
 }
