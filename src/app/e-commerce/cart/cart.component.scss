@@ -1,0 +1,11 @@
+.pi-arrow-left {
+    cursor: pointer;
+}
+
+tr.product-data {
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f7dcb958;
+    }
+}

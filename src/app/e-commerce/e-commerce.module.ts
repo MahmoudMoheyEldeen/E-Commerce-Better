@@ -14,9 +14,10 @@ import { Paginator, PaginatorModule } from 'primeng/paginator';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { GalleriaModule } from 'primeng/galleria';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 @NgModule({
-  declarations: [HomeComponent, CartComponent, ProductDetailsComponent],
+  declarations: [HomeComponent, CartComponent, ProductDetailsComponent, WishListComponent],
   imports: [
     CommonModule,
     ECommerceRoutingModule,

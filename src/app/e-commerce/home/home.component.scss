@@ -23,6 +23,12 @@ tr {
     cursor: pointer;
 }
 
+tr.product-data {
+    &:hover {
+        background-color: #f7dcb958;
+    }
+}
+
 select {
     width: 200px;
 }

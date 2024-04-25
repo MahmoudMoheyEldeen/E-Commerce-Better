@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-5 gallery">
+        <div class="col-lg-4 gallery">
             <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
                 [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
                 <ng-template pTemplate="item" let-item>
@@ -12,6 +12,35 @@
                     </div>
                 </ng-template>
             </p-galleria>
+        </div>
+        <div class="col-lg-8 pl-5">
+            <div class="d-flex  ">
+                <i class="pi pi-arrow-left mb-5 mt-3  ml-auto" style="font-size: 1.5rem"
+                    routerLink="/E-Commerce/home"><span class="pt-3 mt-5">Home</span></i>
+            </div>
+            <div class="mt-4 ms-4">
+                <h4> Product Name</h4>
+            </div>
+            <div class="mt-4 ms-4">
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, voluptatibus alias necessitatibus
+                    quo labore minima fugit, praesentium rem unde in enim quis culpa tempore porro sapiente repellat
+                    laborum, ipsum debitis?</p>
+            </div>
+            <div class="mt-4 ms-4">
+                <p> Product Rate</p>
+            </div>
+            <div class="mt-4 ms-4">
+                <p> Product Price</p>
+            </div>
+            <div class="d-flex mt-4 ms-4">
+                <div>
+                    <button pButton pRipple label="Add To Cart" class="p-button-success"
+                        routerLink="/E-Commerce/cart"></button>
+                </div>
+                <div class="d-flex justify-content-center align-items-center ml-2">
+                    <i class="pi pi-heart-fill" style="font-size: 2rem" routerLink="/E-Commerce/wishList"></i>
+                </div>
+            </div>
         </div>
     </div>
 </div>

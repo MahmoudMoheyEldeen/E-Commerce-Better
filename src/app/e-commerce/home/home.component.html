@@ -83,7 +83,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
-                        <tr routerLink="/E-Commerce/productDetails/{{product.id}}">
+                        <tr class="product-data" routerLink="/E-Commerce/productDetails/{{product.id}}">
                             <td>{{product.id}}</td>
                             <td>{{product.title|showThreeString}}</td>
                             <td><img [src]="product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
