@@ -1,1 +1,24 @@
-<p>wish-list works!</p>
+<div class="container-fluid mt-1 mb-4 pt-2 d-flex flex-wrap">
+    <div class="col-3 mt-2  d-flex px-0  justify-content-center align-items-center" *ngFor="let card of cards">
+        <div class="each-card">
+            <p-card [header]=" card.Title" [subheader]="card.subTitle" [style]="{ width: '360px'}">
+                <ng-template pTemplate="header">
+                    <p-galleria [value]="images" [showIndicators]="true" [showThumbnails]="false"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template pTemplate="item" let-item>
+                            <img class="main-image" [src]="item" style="width: 100%; display: block;" />
+                        </ng-template>
+                    </p-galleria>
+                </ng-template>
+                <p>
+                    {{card.description}}
+                </p>
+                <ng-template pTemplate="footer">
+                    <p-button label="Save" icon="pi pi-check"></p-button>
+                    <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
+                        [style]="{ 'margin-left': '.5em' }"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>

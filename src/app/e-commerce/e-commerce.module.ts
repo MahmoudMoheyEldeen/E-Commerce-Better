@@ -15,9 +15,14 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { WishListComponent } from './wish-list/wish-list.component';
-
+import { CardModule } from 'primeng/card';
 @NgModule({
-  declarations: [HomeComponent, CartComponent, ProductDetailsComponent, WishListComponent],
+  declarations: [
+    HomeComponent,
+    CartComponent,
+    ProductDetailsComponent,
+    WishListComponent,
+  ],
   imports: [
     CommonModule,
     ECommerceRoutingModule,
@@ -32,6 +37,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
     HttpClientModule,
     PipesModule,
     GalleriaModule,
+    CardModule,
   ],
 })
 export class ECommerceModule {}
