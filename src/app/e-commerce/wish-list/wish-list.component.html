@@ -20,17 +20,13 @@
             *ngFor="let product of products | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: products.length }">
             <div class="each-card d-flex justify-content-center align-items-center"
                 routerLink="/E-Commerce/productDetails/{{product.id}}">
-                <p-card [header]=" product.title|showThreeString" [style]="{ width: '360px'}">
+                <p-card [header]="product.title | showThreeString" subheader="Card Subheader"
+                    [style]="{ width: '360px' }">
                     <ng-template pTemplate="header">
-                        <p-galleria [value]="images" [showIndicators]="true" [showThumbnails]="false"
-                            [responsiveOptions]="responsiveOptions">
-                            <ng-template pTemplate="item" let-item>
-                                <img class="main-image" [src]="item" style="width: 100%; display: block;" />
-                            </ng-template>
-                        </p-galleria>
+                        <img alt="Card" [src]="product.image" [style]="{width:'100%' ,height:'200px'}" />
                     </ng-template>
                     <p>
-                        {{product.description| showSmallDescription}}
+                        {{product.description|showSmallDescription}}
                     </p>
                     <ng-template pTemplate="footer">
                         <div class="d-flex  justify-content-center justify-content-between mx-5">
@@ -41,8 +37,17 @@
 
 
                     </ng-template>
-
                 </p-card>
+                <!-- <p-card [header]=" product.title|showThreeString" [style]="{ width: '360px'}">
+                    <ng-template [value]="images" pTemplate="header" let-item>
+                        <img alt="Card" [src]="item" />
+                    </ng-template>
+                    <p>
+                        {{product.description| showSmallDescription}}
+                    </p>
+                  
+
+                </p-card> -->
             </div>
         </div>
     </div>

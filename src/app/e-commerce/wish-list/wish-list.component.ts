@@ -21,11 +21,7 @@ export class WishListComponent implements OnInit {
   }
 
   cards: any = [];
-  images: string[] = [
-    'assets/images/Screenshot-01.png',
-    'assets/images/Screenshot-02.png',
-    'assets/images/Screenshot-03.png',
-  ];
+  images: string[] = [];
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -45,6 +41,8 @@ export class WishListComponent implements OnInit {
     this._productService.getAllProducts().subscribe({
       next: (resp) => {
         this.products = resp;
+        // this.products.map((x) => this.images.push(x.image));
+        // console.log(this.images);
       },
       error: (error) => {
         console.log('error');
