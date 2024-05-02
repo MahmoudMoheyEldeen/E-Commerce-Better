@@ -1,24 +1,49 @@
-<div class="container-fluid mt-1 mb-4 pt-2 d-flex flex-wrap">
-    <div class="col-3 mt-2  d-flex px-0  justify-content-center align-items-center" *ngFor="let card of cards">
-        <div class="each-card">
-            <p-card [header]=" card.Title" [subheader]="card.subTitle" [style]="{ width: '360px'}">
-                <ng-template pTemplate="header">
-                    <p-galleria [value]="images" [showIndicators]="true" [showThumbnails]="false"
-                        [responsiveOptions]="responsiveOptions">
-                        <ng-template pTemplate="item" let-item>
-                            <img class="main-image" [src]="item" style="width: 100%; display: block;" />
-                        </ng-template>
-                    </p-galleria>
-                </ng-template>
-                <p>
-                    {{card.description}}
-                </p>
-                <ng-template pTemplate="footer">
-                    <p-button label="Save" icon="pi pi-check"></p-button>
-                    <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-                        [style]="{ 'margin-left': '.5em' }"></p-button>
-                </ng-template>
-            </p-card>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-between mx-3">
+        <div class="my-3">
+            <p-button label="Remove All Items" severity="danger" icon="pi pi-times"></p-button>
         </div>
+        <div class="my-3">
+            <h3>PRODUCTS : 20</h3>
+        </div>
+        <div class="my-3">
+            <p-button label="Home" icon="pi pi-home" routerLink="/E-Commerce/home"></p-button>
+        </div>
+    </div>
+    <div class="row row-for-wishlist-products px-2 py-2 mx-1 mt-2">
+
+        <div class="col-3 mt-2  d-flex px-2  justify-content-center align-items-center"
+            *ngFor="let product of products | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: products.length }">
+            <div class="each-card d-flex justify-content-center align-items-center"
+                routerLink="/E-Commerce/productDetails/{{product.id}}">
+                <p-card [header]=" product.title|showThreeString" [style]="{ width: '360px'}">
+                    <ng-template pTemplate="header">
+                        <p-galleria [value]="images" [showIndicators]="true" [showThumbnails]="false"
+                            [responsiveOptions]="responsiveOptions">
+                            <ng-template pTemplate="item" let-item>
+                                <img class="main-image" [src]="item" style="width: 100%; display: block;" />
+                            </ng-template>
+                        </p-galleria>
+                    </ng-template>
+                    <p>
+                        {{product.description| showSmallDescription}}
+                    </p>
+                    <ng-template pTemplate="footer">
+                        <div class="d-flex  justify-content-center justify-content-between mx-2">
+                            <button pButton pRipple label="Add To Cart" class="p-button-success"
+                                icon="pi pi-cart-plus"></button>
+                            <p-button label="Remove" severity="danger" icon="pi pi-times"></p-button>
+                        </div>
+
+
+                    </ng-template>
+
+                </p-card>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4 d-flex justify-content-center align-items-center">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
     </div>
 </div>

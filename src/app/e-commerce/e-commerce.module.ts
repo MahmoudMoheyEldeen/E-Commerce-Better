@@ -16,6 +16,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { GalleriaModule } from 'primeng/galleria';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { CardModule } from 'primeng/card';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -38,6 +40,7 @@ import { CardModule } from 'primeng/card';
     PipesModule,
     GalleriaModule,
     CardModule,
+    NgxPaginationModule,
   ],
 })
 export class ECommerceModule {}

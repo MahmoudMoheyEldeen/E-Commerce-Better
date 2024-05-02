@@ -3,7 +3,33 @@ img.main-image {
 }
 
 .each-card {
-    border: 1px grey solid;
+    position: relative;
+    // border: 1px grey solid;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.03);
+
+        // ::before {
+        //     content: "";
+        //     position: absolute;
+        //     width: 100%;
+        //     height: 100%;
+        //     top: 0px;
+        //     left: 0px;
+        //     background-color: #d3cdcd03;
+        // }
+
+
+    }
+}
+
+
+.row-for-wishlist-products {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+    border-radius: 10px;
 }
