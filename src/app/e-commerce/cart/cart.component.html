@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
     <div class="row row-for-allProducts pt-2">
         <div class="col-12">
             <div class="card">
@@ -7,10 +8,16 @@
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[5,10,15]">
                     <ng-template pTemplate="caption">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <p>Products</p>
-                            <i class="pi pi-arrow-left  ml-auto" style="font-size: 1.5rem"
-                                routerLink="/E-Commerce/home"><span class="pt-3 mt-5">Home</span></i>
+                        <div class="row d-flex justify-content-between mx-1">
+                            <div class="">
+                                <p-button label="Remove All Items" severity="danger" icon="pi pi-times"></p-button>
+                            </div>
+                            <div class=" mt-1">
+                                In total there are {{products ? products.length : 0 }} products.
+                            </div>
+                            <div class="">
+                                <p-button label="Home" icon="pi pi-home" routerLink="/E-Commerce/home"></p-button>
+                            </div>
                         </div>
                     </ng-template>
                     <ng-template let-product pTemplate="header">
@@ -21,6 +28,7 @@
                             <th>Price</th>
                             <th>Category</th>
                             <th>Rating</th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
@@ -32,16 +40,20 @@
                             <td>{{product.category}}</td>
                             <td><p-rating [ngModel]="product.rating.rate" [readonly]="true" [cancel]="false"></p-rating>
                             </td>
+                            <td>
+                                <p-button label="Remove" severity="danger" icon="pi pi-times"
+                                    [raised]="true"></p-button>
+                            </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="d-flex justify-content-between">
                             <div class="flex align-items-center justify-content-between">
-                                In total there are {{products ? products.length : 0 }} products.
+                                Total Price Is : 2500 EGP
                             </div>
 
                             <div>
-                                asdasd
+                                <p-button label="Checkout" [raised]="true" severity="info"></p-button>
                             </div>
                         </div>
 

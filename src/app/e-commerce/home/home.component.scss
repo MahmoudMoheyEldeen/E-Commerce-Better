@@ -32,3 +32,12 @@ tr.product-data {
 select {
     width: 200px;
 }
+
+.pi-heart-fill {
+    color: grey;
+
+
+    &:hover {
+        color: red;
+    }
+}

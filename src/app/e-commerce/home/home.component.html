@@ -80,6 +80,8 @@
                             <th>Price</th>
                             <th>Category</th>
                             <th>Rating</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
@@ -91,6 +93,15 @@
                             <td>{{product.category}}</td>
                             <td><p-rating [ngModel]="product.rating.rate" [readonly]="true" [cancel]="false"></p-rating>
                             </td>
+                            <td>
+                                <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus"
+                                    [raised]="true"></p-button>
+                            </td>
+                            <td>
+                                <i class="pi pi-heart-fill" style="font-size: 2rem"></i>
+                            </td>
+
+
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
