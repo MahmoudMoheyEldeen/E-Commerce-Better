@@ -17,6 +17,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { CardModule } from 'primeng/card';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CartComponent,
     ProductDetailsComponent,
     WishListComponent,
+    OrdersComponent,
   ],
   imports: [
     CommonModule,
