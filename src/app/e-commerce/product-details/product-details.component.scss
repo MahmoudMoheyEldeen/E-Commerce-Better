@@ -29,3 +29,37 @@
     cursor: pointer;
     color: rgb(64, 64, 165);
 }
+
+
+
+.large-images {
+    width: 100%;
+
+    img {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+.small-images {
+    height: 50px;
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.brand {
+    color: grey;
+}
+
+.pi-heart-fill {
+    color: grey;
+
+
+    &:hover {
+        color: red;
+    }
+}

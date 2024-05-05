@@ -1,44 +1,53 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-4 gallery">
-            <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
-                [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
-                <ng-template pTemplate="item" let-item>
-                    <img [src]="item" style="width: 100%; display: block;" />
-                </ng-template>
-                <ng-template pTemplate="thumbnail" let-item>
-                    <div class="grid grid-nogutter justify-content-center">
-                        <img [src]="item" style="display: block;" />
-                    </div>
-                </ng-template>
-            </p-galleria>
+    <div class="row d-flex justify-content-between mx-3">
+        <div class="my-3">
+            <p-button label="Home" icon="pi pi-home" routerLink="/E-Commerce/home"></p-button>
         </div>
-        <div class="col-lg-8 pl-5">
-            <div class="d-flex  ">
-                <i class="pi pi-arrow-left mb-5 mt-3  ml-auto" style="font-size: 1.5rem"
-                    routerLink="/E-Commerce/home"><span class="pt-3 mt-5">Home</span></i>
+        <div class="my-3">
+            <i class="pi pi-heart-fill mr-3" style="font-size: 2rem"></i>
+            <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus" [raised]="true"></p-button>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-4  ">
+            <div class="large-images">
+                <p-galleria [value]="images" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions"
+                    [circular]="true" [numVisible]="5" [containerStyle]="{ 'max-width': '640px' }">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item" style="width: 100%; display: block;" />
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                        <div class="small-images justify-content-center">
+                            <img [src]="item" style="display: block;" />
+                        </div>
+                    </ng-template>
+                </p-galleria>
             </div>
-            <div class="mt-4 ms-4">
-                <h4> Product Name</h4>
+        </div>
+        <div class="col-4  d-flex justify-content-center align-items-center">
+            <div class="product-details-column">
+                <h5 class="brand">SAMSUNG</h5>
+                <h4 class="mt-3">Galaxy A24 Dual Sim Silver 6GB RAM 128GB 4G - Middle East Version</h4>
+                <p>Model Number : SM-A245FZSVMEA / SM-A245F/DSN
+                </p>
+                <p>Rate 4.5</p>
+                <p>EGP 8120.00 </p>
             </div>
-            <div class="mt-4 ms-4">
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, voluptatibus alias necessitatibus
-                    quo labore minima fugit, praesentium rem unde in enim quis culpa tempore porro sapiente repellat
-                    laborum, ipsum debitis?</p>
-            </div>
-            <div class="mt-4 ms-4">
-                <p> Product Rate</p>
-            </div>
-            <div class="mt-4 ms-4">
-                <p> Product Price</p>
-            </div>
-            <div class="d-flex mt-4 ms-4">
-                <div>
-                    <button pButton pRipple label="Add To Cart" class="p-button-success"
-                        routerLink="/E-Commerce/cart"></button>
+        </div>
+        <div class="col-4  d-flex justify-content-center align-items-center">
+            <div class="shipping-details-column d-flex flex-column">
+                <div class="mb-5 mt-4">
+                    <h5 class="">1 Year warranty</h5>
+                    <p class="mt-3">Free delivery on Lockers & Pickup Points
+                    </p>
+                    <p>Sold by TASHKYLTY
+                    </p>
                 </div>
-                <div class="d-flex justify-content-center align-items-center ml-2">
-                    <i class="pi pi-heart-fill" style="font-size: 2rem" routerLink="/E-Commerce/wishList"></i>
+                <div class=" d-flex mt-5 ">
+                    <div class="ml-auto">
+                        <p-button label="Checkout" [raised]="true" severity="info"></p-button>
+
+                    </div>
                 </div>
             </div>
         </div>

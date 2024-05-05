@@ -29,6 +29,7 @@
                             <th>Category</th>
                             <th>Rating</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
@@ -41,8 +42,17 @@
                             <td><p-rating [ngModel]="product.rating.rate" [readonly]="true" [cancel]="false"></p-rating>
                             </td>
                             <td>
-                                <p-button label="Remove" severity="danger" icon="pi pi-times"
+                                <p-button label="Remove" severity="danger" icon="pi pi-times" size="small"
                                     [raised]="true"></p-button>
+                            </td>
+                            <td>
+                                <div class="d-flex">
+                                    <p-button severity="success" icon="pi pi-minus" [style]="{width:'30px'}"
+                                        [raised]="true"></p-button>
+                                    <h3 class="mt-2 mx-2">5</h3>
+                                    <p-button severity="success" icon="pi pi-plus" [style]="{width:'30px'}"
+                                        [raised]="true"></p-button>
+                                </div>
                             </td>
                         </tr>
                     </ng-template>
