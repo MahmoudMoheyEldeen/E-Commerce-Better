@@ -3,7 +3,7 @@ export interface Product {
   title: string;
   price: number;
   description: string;
-  category: Category;
+  category: string;
   image: string;
   rating: Rating;
 }
@@ -13,9 +13,9 @@ export interface Rating {
   count: number;
 }
 
-export enum Category {
-  Electronics = 'electronics',
-  Jewelery = 'jewelery',
-  MenSClothing = "men's clothing",
-  WomenSClothing = "women's clothing",
-}
+// export enum Category {
+//   Electronics = 'electronics',
+//   Jewelery = 'jewelery',
+//   MenSClothing = "men's clothing",
+//   WomenSClothing = "women's clothing",
+// }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
-import { Product } from '../../interfaces/product';
+import { Product, Rating } from '../../interfaces/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
@@ -11,7 +11,20 @@ import { ButtonModule } from 'primeng/button';
 })
 export class ProductDetailsComponent implements OnInit {
   ProductId: string = ' ';
-  Product: Product[] = [];
+  product: Product = {
+    id: 0,
+    title: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+  };
+
+  singleProduct: {} = {};
   responsiveOptions: any[] | undefined;
 
   images: string[] = [
@@ -54,8 +67,8 @@ export class ProductDetailsComponent implements OnInit {
   getProductDetails() {
     this._productService.getSpecificProduct(+this.ProductId).subscribe({
       next: (resp) => {
-        this.Product = resp;
-        console.log(this.Product);
+        this.product = resp;
+        console.log('this is specific product ', this.product);
       },
     });
   }

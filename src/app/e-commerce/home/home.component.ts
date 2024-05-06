@@ -1,6 +1,6 @@
 import { Component, OnInit, afterNextRender } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
-import { Category, Product } from '../../interfaces/product';
+import { Product } from '../../interfaces/product';
 import { Router } from '@angular/router';
 
 @Component({
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
   ];
   productID: number = 0;
 
-  categories: Category[] = [];
+  categories: string = '';
   rowsPerPageOptions: number[] = [];
   products: Product[] = [];
   dropdownCategTerm: string = 'All';
