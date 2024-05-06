@@ -12,16 +12,25 @@ import { ButtonModule } from 'primeng/button';
 export class ProductDetailsComponent implements OnInit {
   ProductId: string = ' ';
   product: Product = {
-    id: 0,
+    sold: 0,
+    images: [],
+    subcategory: [],
+    ratingsQuantity: 0,
+    _id: '',
     title: '',
-    price: 0,
+    slug: '',
     description: '',
+    quantity: 0,
+    price: 0,
+    imageCover: '',
     category: '',
-    image: '',
-    rating: {
-      rate: 0,
-      count: 0,
-    },
+    brand: '',
+    ratingsAverage: 0,
+    createdAt: '',
+    updatedAt: '',
+    id: '',
+    priceAfterDiscount: 0,
+    availableColors: [],
   };
 
   singleProduct: {} = {};
@@ -43,9 +52,6 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._route.paramMap.subscribe((params) => {
-      this.ProductId = params.get('id') || '0';
-    });
     this.getProductDetails();
 
     this.responsiveOptions = [
@@ -65,9 +71,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductDetails() {
-    this._productService.getSpecificProduct(+this.ProductId).subscribe({
+    this._route.params.subscribe((params) => {
+      this.ProductId = params['id'];
+      console.log('this is id ', this.ProductId);
+    });
+    this._productService.getSpecificProduct(this.ProductId).subscribe({
       next: (resp) => {
-        this.product = resp;
+        this.product = resp.data;
         console.log('this is specific product ', this.product);
       },
     });

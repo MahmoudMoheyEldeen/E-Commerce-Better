@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
   dropdownCategTerm: string = 'All';
 
   ngOnInit(): void {
-    this.getProductLimit(5);
+    // this.getProductLimit(5);
     this.getAllProduct();
     this.getAllCategories();
     this.responsiveOptions = [
@@ -148,7 +148,8 @@ export class HomeComponent implements OnInit {
   getAllProduct() {
     this._productService.getAllProducts().subscribe({
       next: (resp) => {
-        this.products = resp;
+        this.products = resp.data;
+        console.log('route product', this.products);
       },
       error: (error) => {
         console.log('error');

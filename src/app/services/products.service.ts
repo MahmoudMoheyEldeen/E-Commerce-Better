@@ -7,10 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService {
   baseUrl: string = 'https://fakestoreapi.com';
+  routeBaseUrl: string = 'https://ecommerce.routemisr.com';
+
   constructor(private _httpClient: HttpClient) {}
 
   getAllProducts(): Observable<any> {
-    return this._httpClient.get(`${this.baseUrl}/products`);
+    return this._httpClient.get(`${this.routeBaseUrl}/api/v1/products`);
   }
   getAllCategories(): Observable<any> {
     return this._httpClient.get(`${this.baseUrl}/products/categories`);
@@ -19,7 +21,7 @@ export class ProductsService {
     return this._httpClient.get(`${this.baseUrl}/products?limit=${limit}`);
   }
 
-  getSpecificProduct(id: number): Observable<any> {
-    return this._httpClient.get(`${this.baseUrl}/products/${id}`);
+  getSpecificProduct(id: any): Observable<any> {
+    return this._httpClient.get(`${this.routeBaseUrl}/api/v1/products/${id}`);
   }
 }

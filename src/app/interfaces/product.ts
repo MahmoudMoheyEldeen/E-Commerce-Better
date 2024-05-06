@@ -1,11 +1,23 @@
 export interface Product {
-  id: number;
+  sold: number;
+  images: string[];
+  subcategory: string[];
+  ratingsQuantity: number;
+  _id: string;
   title: string;
-  price: number;
+  slug: string;
   description: string;
+  quantity: number;
+  price: number;
+  imageCover: string;
   category: string;
-  image: string;
-  rating: Rating;
+  brand: string;
+  ratingsAverage: number;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+  priceAfterDiscount?: number;
+  availableColors?: any[];
 }
 
 export interface Rating {
