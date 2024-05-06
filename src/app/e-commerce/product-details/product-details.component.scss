@@ -43,11 +43,13 @@
 
 .small-images {
     height: 50px;
-    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     img {
         width: 100%;
-        height: 100%;
+        height: 150%;
+
     }
 }
 
@@ -62,4 +64,10 @@
     &:hover {
         color: red;
     }
+}
+
+::ng-deep .p-galleria .p-galleria-thumbnail-container {
+    display: flex;
+    padding: 1rem 0.25rem;
+
 }

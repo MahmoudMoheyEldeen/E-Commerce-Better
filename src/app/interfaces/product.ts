@@ -10,7 +10,7 @@ export interface Product {
   quantity: number;
   price: number;
   imageCover: string;
-  category: string;
+  category: Category;
   brand: string;
   ratingsAverage: number;
   createdAt: string;
@@ -25,9 +25,6 @@ export interface Rating {
   count: number;
 }
 
-// export enum Category {
-//   Electronics = 'electronics',
-//   Jewelery = 'jewelery',
-//   MenSClothing = "men's clothing",
-//   WomenSClothing = "women's clothing",
-// }
+export interface Category {
+  name: string;
+}

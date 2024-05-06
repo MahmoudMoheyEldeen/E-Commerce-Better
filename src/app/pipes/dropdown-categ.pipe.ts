@@ -10,7 +10,7 @@ export class DropdownCategPipe implements PipeTransform {
       return products;
     } else {
       return products.filter((p) =>
-        p.category.toLowerCase().includes(searchItem.toLowerCase())
+        p.category.name.toLowerCase().includes(searchItem.toLowerCase())
       );
     }
   }
