@@ -5,7 +5,8 @@
         </div>
         <div class="my-3">
             <i class="pi pi-heart-fill mr-3" style="font-size: 2rem"></i>
-            <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus" [raised]="true"></p-button>
+            <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus" [raised]="true"
+                (onClick)="addProductToCart()"></p-button>
         </div>
     </div>
     <div class="row ">

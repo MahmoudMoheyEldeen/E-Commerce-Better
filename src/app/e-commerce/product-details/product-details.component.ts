@@ -3,6 +3,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Product, Rating } from '../../interfaces/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -50,6 +51,7 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private _productService: ProductsService,
+    private _cartService: CartService,
     private _route: ActivatedRoute
   ) {}
 
@@ -81,6 +83,19 @@ export class ProductDetailsComponent implements OnInit {
       next: (resp) => {
         this.product = resp.data;
         console.log('this is specific product ', this.product);
+      },
+    });
+  }
+
+  addProductToCart() {
+    this._route.params.subscribe((params) => {
+      this.ProductId = params['id'];
+      console.log('this is id for post ', this.ProductId);
+    });
+    this._cartService.addToCart(this.ProductId).subscribe({
+      next: (resp) => {
+        this.product = resp;
+        console.log(this.product);
       },
     });
   }
