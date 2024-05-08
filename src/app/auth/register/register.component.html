@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-    <form [formGroup]=registerForm>
+    <form [formGroup]=registerForm (ngSubmit)="submitRegisterForm()">
 
 
         <!-- <div data-mdb-input-init class="form-outline mb-4">
@@ -8,40 +8,105 @@
         </div> -->
 
         <!-- Username input -->
+
         <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="name">name</label>
+            <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                class="text-danger mt-0">
+                <div *ngIf="registerForm.get('name')?.errors?.['required']">
+                    You Must Enter Your Name
+                </div>
+                <div *ngIf="registerForm.get('name')?.errors?.['minlength']">
+                    Your name must be more than 8 characters
+                </div>
+                <div *ngIf="registerForm.get('name')?.hasError('maxlength')">
+                    Your name must (not) be more than 20 characters
+                </div>
+            </div>
             <input formControlName="name" type="text" id="name" class="form-control" />
         </div>
 
-
         <!-- Email input -->
+
+
         <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="registerEmail">Email</label>
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                class="text-danger mt-0">
+                <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                    You Must Enter Your Email
+                </div>
+                <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                    Enter Correct Email
+                </div>
+            </div>
             <input formControlName="email" type="email" id="registerEmail" class="form-control" />
         </div>
 
         <!-- Password input -->
         <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="registerPassword">Password</label>
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                class="text-danger mt-0">
+                <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                    You Must Enter Your Password
+                </div>
+                <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                    Your password must be more than 8 characters
+                </div>
+                <div *ngIf="registerForm.get('password')?.hasError('pattern')">
+                    Your password must start with capital letter then combination of numbers , symbols ,and alphabets
+                    and between 8 and 20 characters
+                </div>
+                <div *ngIf="registerForm.get('password')?.hasError('maxlength')">
+                    Your password must (not) be more than 20 characters
+                </div>
+            </div>
             <input formControlName="password" type="password" id="registerPassword" class="form-control" />
         </div>
 
         <!-- Repeat Password input -->
         <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+            <div *ngIf="registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched"
+                class="text-danger mt-0">
+                <div *ngIf="registerForm.get('rePassword')?.errors?.['required']">
+                    You Must Enter Your rePassword
+                </div>
+                <div *ngIf="registerForm.get('rePassword')?.errors?.['minlength']">
+                    Your rePassword must be more than 8 characters
+                </div>
+                <div *ngIf="registerForm.get('rePassword')?.hasError('pattern')">
+                    Your rePassword must start with capital letter then combination of numbers , symbols ,and alphabets
+                    and between 8 and 20 characters
+                </div>
+                <div *ngIf="registerForm.get('rePassword')?.hasError('maxlength')">
+                    Your rePassword must (not) be more than 20 characters
+                </div>
+            </div>
             <input formControlName="rePassword" type="password" id="registerRepeatPassword" class="form-control" />
         </div>
 
         <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="phone">phone</label>
+            <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+                class="text-danger mt-0">
+                <div *ngIf="registerForm.get('phone')?.errors?.['required']">
+                    You Must Enter Your phone
+                </div>
+                <!-- <div *ngIf="registerForm.get('phone')?.hasError('pattern')">
+                    Enter Egypt Number
+                </div> -->
+
+            </div>
             <input formControlName="phone" type="number" id="phone" class="form-control" />
         </div>
 
 
         <!-- Submit button -->
-        <button type="" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4"
-            (click)="submitRegisterForm()">Register</button>
-        <a (click)="submitRegisterForm()">asd</a>
+        <button type=" submit" data-mdb-button-init data-mdb-ripple-init
+            class="btn btn-primary btn-block mb-4">Register</button>
+        <!-- <a (click)="submitRegisterForm()">asd</a> -->
 
         <!-- Register buttons -->
 

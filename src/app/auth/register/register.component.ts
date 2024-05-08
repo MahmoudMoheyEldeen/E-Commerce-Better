@@ -10,10 +10,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit {
   constructor(private _authService: AuthService) {}
 
+  isRegistered: boolean = true;
+
   ngOnInit(): void {}
 
   registerForm = new FormGroup({
-    name: new FormControl(null, { validators: Validators.required }),
+    name: new FormControl(null, {
+      validators: [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+      ],
+    }),
     email: new FormControl(null, {
       validators: [Validators.required, Validators.email],
     }),
@@ -38,7 +46,12 @@ export class RegisterComponent implements OnInit {
         ),
       ],
     }),
-    phone: new FormControl(null, { validators: Validators.required }),
+    phone: new FormControl(null, {
+      validators: [
+        Validators.required,
+        Validators.pattern(/^01[0125][0-9]{8}$/),
+      ],
+    }),
   });
 
   // registerForm = new FormGroup({
@@ -53,6 +66,7 @@ export class RegisterComponent implements OnInit {
     this._authService.register(this.registerForm.value).subscribe({
       next: (resp) => {
         console.log('success');
+        console.log(resp);
       },
 
       error: (err) => {

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { MenubarModule } from 'primeng/menubar';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     DynamicDialogModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [DynamicDialogRef],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

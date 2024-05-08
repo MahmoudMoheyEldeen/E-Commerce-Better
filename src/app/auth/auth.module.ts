@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -16,5 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
+
+  providers: [MessageService],
 })
 export class AuthModule {}

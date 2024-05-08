@@ -1,7 +1,19 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
 import { RegisterComponent } from '../register/register.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +22,8 @@ import { Router } from '@angular/router';
   providers: [DialogService],
 })
 export class LoginComponent implements OnInit {
+  @Output() signInClicked: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(private _el: ElementRef) {}
 
   ngOnInit(): void {
@@ -35,5 +49,12 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+  }
+
+  signIn() {
+    // Perform sign-in actions here
+
+    // Emit event to indicate that sign-in was successful
+    this.signInClicked.emit();
   }
 }

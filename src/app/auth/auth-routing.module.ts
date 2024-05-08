@@ -4,22 +4,22 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: LoginComponent,
-  //   children: [
-  //     {
-  //       path: 'login',
-  //       component: LoginagaaainComponent,
-  //       pathMatch: 'full',
-  //     },
-  //     {
-  //       path: 'register',
-  //       component: RegisterComponent,
-  //       pathMatch: 'full',
-  //     },
-  //   ],
-  // },
+  {
+    path: '',
+    component: LoginComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
