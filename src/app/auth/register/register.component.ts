@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _route: Router) {}
 
   isRegistered: boolean = true;
+  @Output() goLogin = new EventEmitter<void>();
 
   ngOnInit(): void {}
 
@@ -67,6 +69,7 @@ export class RegisterComponent implements OnInit {
       next: (resp) => {
         console.log('success');
         console.log(resp);
+        this.goLogin.emit();
       },
 
       error: (err) => {

@@ -4,12 +4,15 @@ import { ButtonModule } from 'primeng/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CartComponent } from 'src/app/e-commerce/cart/cart.component';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { AuthModule } from '../../auth/auth.module';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Router } from '@angular/router';
+import { DialogModule } from 'primeng/dialog';
+import { AppComponent } from '../../app.component';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -20,29 +23,33 @@ import { AuthModule } from '../../auth/auth.module';
     BrowserAnimationsModule,
     MenubarModule,
     AuthModule,
+    ConfirmDialogModule,
+    DialogModule,
+    AuthModule,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   providers: [DialogService],
 })
 export class HeaderComponent {
+  visible: boolean = false;
+
   constructor(
-    public dialogService: DialogService,
-    public ref: DynamicDialogRef
+    private _confirmService: ConfirmationService,
+    private _route: Router
   ) {}
 
-  show() {
-    const ref = this.dialogService.open(LoginComponent, {
-      width: '50%',
-      closeOnEscape: true,
+  confirm() {
+    console.log('sadasd');
+    this._confirmService.confirm({
+      message: '',
+      accept: () => {
+        this._route.navigateByUrl('/E-Commerce/cart');
+      },
     });
+  }
 
-    // Subscribe to signInClicked event from LoginComponent
-    ref.onClose.subscribe((result: any) => {
-      if (result === 'signInClicked') {
-        console.log('Sign In clicked, closing dialog');
-        ref.close();
-      }
-    });
+  showDialog() {
+    this.visible = true;
   }
 }

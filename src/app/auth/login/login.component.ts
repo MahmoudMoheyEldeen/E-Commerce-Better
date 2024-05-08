@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -22,15 +23,13 @@ import { Product } from '../../interfaces/product';
   providers: [DialogService],
 })
 export class LoginComponent implements OnInit {
-  @Output() signInClicked: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor(private _el: ElementRef) {}
+  @Output() closeDialog = new EventEmitter<void>();
+  isRegistered: boolean = true;
+  constructor(private _el: ElementRef, private _route: Router) {}
 
   ngOnInit(): void {
     this.isClicked();
   }
-
-  isRegistered: boolean = true;
 
   isClicked() {
     // Get the button element with the class 'login'
@@ -52,9 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    // Perform sign-in actions here
-
-    // Emit event to indicate that sign-in was successful
-    this.signInClicked.emit();
+    this.closeDialog.emit();
+    this._route.navigateByUrl('/E-Commerce/cart');
   }
 }

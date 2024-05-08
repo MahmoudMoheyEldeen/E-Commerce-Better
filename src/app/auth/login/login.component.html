@@ -54,6 +54,6 @@
 
 
 <div class="register" *ngIf="!isRegistered">
-    <app-register></app-register>
+    <app-register (goLogin)="isRegistered=true"></app-register>
 </div>
 <!-- Pills content -->

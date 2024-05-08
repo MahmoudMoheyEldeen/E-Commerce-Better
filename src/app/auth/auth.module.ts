@@ -18,7 +18,7 @@ import { MessageService } from 'primeng/api';
     FormsModule,
     ReactiveFormsModule,
   ],
-
+  exports: [RegisterComponent, LoginComponent],
   providers: [MessageService],
 })
 export class AuthModule {}

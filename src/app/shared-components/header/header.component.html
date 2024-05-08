@@ -13,9 +13,17 @@
                 <a class="nav-link" href="#">English</a>
             </li>
             <div class="splitter d-lg-block d-none "></div>
+            <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
             <li class="nav-item d-flex">
-                <a class="nav-link" (click)="show()"><span class="link-text mx-1">Log in</span> <i class="pi pi-user"
-                        style="font-size: 1rem"></i></a>
+                <a class="nav-link" (click)="showDialog()"><span class="link-text mx-1">Log in</span> <i
+                        class="pi pi-user" style="font-size: 1rem"></i></a>
+
+                <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+                    <app-login (closeDialog)="visible=false"></app-login>
+                </p-dialog>
+
+
 
             </li>
             <li class="nav-item">

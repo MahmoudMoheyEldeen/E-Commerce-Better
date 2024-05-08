@@ -8,6 +8,7 @@ import { FooterComponent } from './shared-components/footer/footer.component';
 import { MenubarModule } from 'primeng/menubar';
 import { DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     DynamicDialogModule,
     HttpClientModule,
   ],
-  providers: [DynamicDialogRef],
+  providers: [DynamicDialogRef, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
