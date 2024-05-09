@@ -56,14 +56,6 @@ export class RegisterComponent implements OnInit {
     }),
   });
 
-  // registerForm = new FormGroup({
-  //   name: new FormControl(null, { validators: Validators.required }),
-  //   userName: new FormControl(null, { validators: Validators.required }),
-  //   email: new FormControl(null, { validators: Validators.required }),
-  //   password: new FormControl(null, { validators: Validators.required }),
-  //   rePassword: new FormControl(null, { validators: Validators.required }),
-  // });
-
   submitRegisterForm() {
     this._authService.register(this.registerForm.value).subscribe({
       next: (resp) => {
@@ -76,20 +68,5 @@ export class RegisterComponent implements OnInit {
         console.log('this is error here');
       },
     });
-
-    // if (this.registerForm.valid) {
-    //   this._authService.register(this.registerForm.value).subscribe({
-    //     next: (resp) => {
-    //       console.log('success');
-    //     },
-
-    //     error: (err) => {
-    //       console.log('this is error here');
-    //     },
-    //   });
-    // } else {
-    //   console.log('your registerform not valid');
-    //   console.log(this.registerForm.value);
-    // }
   }
 }

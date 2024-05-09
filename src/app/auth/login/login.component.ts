@@ -15,6 +15,8 @@ import { RegisterComponent } from '../register/register.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Product } from '../../interfaces/product';
+import { AuthService } from 'src/app/services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,28 @@ import { Product } from '../../interfaces/product';
 export class LoginComponent implements OnInit {
   @Output() closeDialog = new EventEmitter<void>();
   isRegistered: boolean = true;
-  constructor(private _el: ElementRef, private _route: Router) {}
+
+  loginForm = new FormGroup({
+    email: new FormControl(null, {
+      validators: [Validators.required, Validators.email],
+    }),
+
+    password: new FormControl(null, {
+      validators: [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern(
+          /^(?=.*[A-Z])(?=.*[\d\w])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/
+        ),
+      ],
+    }),
+  });
+  constructor(
+    private _el: ElementRef,
+    private _route: Router,
+    private _authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.isClicked();
@@ -51,7 +74,15 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    this.closeDialog.emit();
-    this._route.navigateByUrl('/E-Commerce/cart');
+    this._authService.logIn(this.loginForm.value).subscribe({
+      next: (resp) => {
+        console.log('login Success', this.loginForm.value);
+        this.closeDialog.emit();
+        this._route.navigateByUrl('/E-Commerce/cart');
+      },
+      error: (err) => {
+        console.log('error', err);
+      },
+    });
   }
 }
