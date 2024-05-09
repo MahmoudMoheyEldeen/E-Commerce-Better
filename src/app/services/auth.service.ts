@@ -10,6 +10,14 @@ export class AuthService {
 
   constructor(private _httpclient: HttpClient) {}
 
+  isLogged(): boolean {
+    if (localStorage.getItem('authToken')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   register(registerform: any): Observable<any> {
     return this._httpclient.post(
       `${this.routeBaseUrl}/api/v1/auth/signup`,
@@ -22,5 +30,12 @@ export class AuthService {
       `${this.routeBaseUrl}/api/v1/auth/signin`,
       loginForm
     );
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+  removeToken(): void {
+    localStorage.removeItem('authToken');
   }
 }

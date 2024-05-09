@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { AppComponent } from '../../app.component';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -36,7 +37,8 @@ export class HeaderComponent {
 
   constructor(
     private _confirmService: ConfirmationService,
-    private _route: Router
+    private _route: Router,
+    private _authService: AuthService
   ) {}
 
   confirm() {
@@ -51,5 +53,13 @@ export class HeaderComponent {
 
   showDialog() {
     this.visible = true;
+  }
+
+  logOut() {
+    this._authService.removeToken();
+  }
+
+  isLogged(): boolean {
+    return this._authService.isLogged();
   }
 }

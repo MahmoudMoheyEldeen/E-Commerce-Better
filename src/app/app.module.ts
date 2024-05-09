@@ -7,8 +7,14 @@ import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { MenubarModule } from 'primeng/menubar';
 import { DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { ConfirmationService } from 'primeng/api';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +28,16 @@ import { ConfirmationService } from 'primeng/api';
     DynamicDialogModule,
     HttpClientModule,
   ],
-  providers: [DynamicDialogRef, ConfirmationService],
+  providers: [
+    DynamicDialogRef,
+    ConfirmationService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

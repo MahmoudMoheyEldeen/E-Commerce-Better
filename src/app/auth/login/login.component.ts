@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
 import { Product } from '../../interfaces/product';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -77,6 +78,8 @@ export class LoginComponent implements OnInit {
     this._authService.logIn(this.loginForm.value).subscribe({
       next: (resp) => {
         console.log('login Success', this.loginForm.value);
+        console.log('this is token', resp.token);
+        localStorage.setItem('authToken', resp.token);
         this.closeDialog.emit();
         this._route.navigateByUrl('/E-Commerce/cart');
       },
