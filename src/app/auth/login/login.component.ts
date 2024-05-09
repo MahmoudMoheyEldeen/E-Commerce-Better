@@ -18,6 +18,7 @@ import { Product } from '../../interfaces/product';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Token } from '@angular/compiler';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,15 @@ import { Token } from '@angular/compiler';
 export class LoginComponent implements OnInit {
   @Output() closeDialog = new EventEmitter<void>();
   isRegistered: boolean = true;
+  username: any = {
+    id: '',
+    name: '',
+    role: '',
+    iat: 0,
+    exp: 0,
+  };
+  userName: string = '';
+  userToken: any;
 
   loginForm = new FormGroup({
     email: new FormControl(null, {
@@ -80,6 +90,9 @@ export class LoginComponent implements OnInit {
         console.log('login Success', this.loginForm.value);
         console.log('this is token', resp.token);
         localStorage.setItem('authToken', resp.token);
+        console.log('this is decode of token', this._authService.decodeToken());
+        this.userName = this._authService.decodeToken().name;
+        console.log('this is the name of user', this.userName);
         this.closeDialog.emit();
         this._route.navigateByUrl('/E-Commerce/cart');
       },

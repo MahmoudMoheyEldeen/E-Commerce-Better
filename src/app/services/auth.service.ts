@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private routeBaseUrl: string = 'https://ecommerce.routemisr.com';
-
+  token: any;
+  userTokenDecoded: any;
+  userData: any = {
+    id: '',
+    name: '',
+    role: '',
+    iat: 0,
+    exp: 0,
+  };
   constructor(private _httpclient: HttpClient) {}
 
   isLogged(): boolean {
@@ -15,6 +24,17 @@ export class AuthService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  decodeToken() {
+    this.token = localStorage.getItem('authToken');
+    try {
+      this.userData = jwtDecode(this.token);
+      return this.userData;
+    } catch (error) {
+      console.log('Error decoding token:', error);
+      return null;
     }
   }
 

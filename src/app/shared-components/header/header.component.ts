@@ -32,7 +32,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss'],
   providers: [DialogService],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   visible: boolean = false;
 
   constructor(
@@ -40,6 +40,8 @@ export class HeaderComponent {
     private _route: Router,
     private _authService: AuthService
   ) {}
+
+  ngOnInit(): void {}
 
   confirm() {
     console.log('sadasd');
@@ -61,5 +63,10 @@ export class HeaderComponent {
 
   isLogged(): boolean {
     return this._authService.isLogged();
+  }
+  userDate(): string {
+    if (this.isLogged()) {
+      return this._authService.decodeToken().name;
+    } else return 'User';
   }
 }
