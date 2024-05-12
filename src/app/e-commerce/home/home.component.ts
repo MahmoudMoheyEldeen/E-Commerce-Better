@@ -106,7 +106,8 @@ export class HomeComponent implements OnInit {
       Image: 'assets/images/kitchen.jpeg',
     },
   ];
-  productID: number = 0;
+  productID: string = '';
+  // ProductIdArrays: [] = [];
 
   categories: string = '';
   rowsPerPageOptions: number[] = [];
@@ -114,7 +115,6 @@ export class HomeComponent implements OnInit {
   dropdownCategTerm: string = 'All';
 
   ngOnInit(): void {
-    // this.getProductLimit(5);
     this.getAllProduct();
     this.getAllCategories();
     this.responsiveOptions = [
@@ -149,6 +149,8 @@ export class HomeComponent implements OnInit {
     this._productService.getAllProducts().subscribe({
       next: (resp) => {
         this.products = resp.data;
+        // this.products.map((x) => (this.productID = x._id));
+        // console.log('this is product id ', this.productID);
         console.log('route product', this.products);
       },
       error: (error) => {
@@ -183,5 +185,15 @@ export class HomeComponent implements OnInit {
   generateRowsPerPageOptions(limit: number): number[] {
     // Generate rows per page options based on the limit
     return [limit, limit * 2, limit * 3];
+  }
+
+  addProductToWishList() {
+    this._productService
+      .postProductToWishList('6428ebc6dc1175abc65ca0b9')
+      .subscribe({
+        next: (resp) => {
+          console.log(resp);
+        },
+      });
   }
 }

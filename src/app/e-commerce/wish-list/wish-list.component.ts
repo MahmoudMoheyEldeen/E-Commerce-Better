@@ -17,6 +17,7 @@ export class WishListComponent implements OnInit {
     this.products = this.loadItems(); // Load your items from local storage or another source
   }
   ngOnInit(): void {
+    this.getWishListProducts();
     this.getAllProduct();
   }
 
@@ -55,5 +56,13 @@ export class WishListComponent implements OnInit {
     // Example:
     // return JSON.parse(localStorage.getItem('wishlistItems')) || [];
     return this.products;
+  }
+
+  getWishListProducts() {
+    this._productService.getLoggedUserWishList().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
   }
 }

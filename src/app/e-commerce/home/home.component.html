@@ -96,11 +96,12 @@
                             </td> -->
                             <td></td>
                             <td>
-                                <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus"
-                                    [raised]="true"></p-button>
+                                <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus" [raised]="true"
+                                    routerLink="/E-Commerce/home"></p-button>
                             </td>
                             <td>
-                                <i class="pi pi-heart-fill" style="font-size: 2rem"></i>
+                                <i class="pi pi-heart-fill" (click)="addProductToWishList()"
+                                    routerLink="/E-Commerce/home" style="font-size: 2rem"></i>
                             </td>
 
 

@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit {
   isLogged(): boolean {
     return this._authService.isLogged();
   }
-  userDate(): string {
+  userData(): string {
     if (this.isLogged()) {
       return this._authService.decodeToken().name;
     } else return 'User';

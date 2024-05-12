@@ -45,5 +45,12 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
     CardModule,
     NgxPaginationModule,
   ],
+  // providers: [
+  //   {
+  //     provide: HTTP_INTERCEPTORS,
+  //     useClass: AuthInterceptor,
+  //     multi: true,
+  //   },
+  // ],
 })
 export class ECommerceModule {}

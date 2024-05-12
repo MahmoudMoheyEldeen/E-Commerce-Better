@@ -24,4 +24,14 @@ export class ProductsService {
   getSpecificProduct(id: any): Observable<any> {
     return this._httpClient.get(`${this.routeBaseUrl}/api/v1/products/${id}`);
   }
+  postProductToWishList(productID: any): Observable<any> {
+    return this._httpClient.post(
+      `${this.routeBaseUrl}/api/v1/wishlist`,
+      productID
+    );
+  }
+
+  getLoggedUserWishList(): Observable<any> {
+    return this._httpClient.get(`${this.routeBaseUrl}/api/v1/wishlist`);
+  }
 }
