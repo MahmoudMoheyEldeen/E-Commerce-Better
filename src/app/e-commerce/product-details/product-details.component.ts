@@ -92,10 +92,9 @@ export class ProductDetailsComponent implements OnInit {
       this.ProductId = params['id'];
       console.log('this is id for post ', this.ProductId);
     });
-    this._cartService.addToCart(this.ProductId).subscribe({
+    this._cartService.postProductToCart(this.ProductId).subscribe({
       next: (resp) => {
-        this.product = resp;
-        console.log(this.product);
+        console.log(resp);
       },
     });
   }

@@ -3,17 +3,19 @@
     <div class="row row-for-allProducts pt-2">
         <div class="col-12">
             <div class="card">
-                <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
-                    [showCurrentPageReport]="true"
+                <p-table [value]="products.data.products" [tableStyle]="{'min-width': '60rem'}" [paginator]="true"
+                    [rows]="5" [showCurrentPageReport]="true"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[5,10,15]">
                     <ng-template pTemplate="caption">
                         <div class="row d-flex justify-content-between mx-1">
                             <div class="">
-                                <p-button label="Remove All Items" severity="danger" icon="pi pi-times"></p-button>
+                                <p-button label="Remove All Items" (onClick)="removeLoggedUserCart()" severity="danger"
+                                    icon="pi pi-times"></p-button>
                             </div>
                             <div class=" mt-1">
-                                In total there are {{products ? products.length : 0 }} products.
+                                In total there are {{products.data.products ? products.data.products.length : 0 }}
+                                products.
                             </div>
                             <div class="">
                                 <p-button label="Home" icon="pi pi-home" routerLink="/E-Commerce/home"></p-button>
@@ -22,30 +24,29 @@
                     </ng-template>
                     <ng-template let-product pTemplate="header">
                         <tr>
-                            <th>ID</th>
+
                             <th>Title</th>
                             <th>Image</th>
                             <th>Price</th>
                             <th>Category</th>
-                            <th>Rating</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
                         <tr class="product-data" routerLink="/E-Commerce/productDetails/{{product.id}}">
-                            <td>{{product.id}}</td>
-                            <td>{{product.title|showThreeString}}</td>
-                            <td><img [src]="product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
+
+                            <td>{{product.product.title}}</td>
+                            <td><img [src]="product.product.imageCover" [alt]="product.name" width="100"
+                                    class="shadow-4" /></td>
                             <td>{{product.price}}</td>
-                            <td>{{product.category}}</td>
-                            <td><p-rating [ngModel]="product.rating.rate" [readonly]="true" [cancel]="false"></p-rating>
-                            </td>
+                            <td>{{product.product.category.name}}</td>
+
                             <td>
                                 <div class="d-flex">
                                     <p-button severity="success" icon="pi pi-minus" [style]="{width:'30px'}"
                                         [raised]="true" [style]="{width:'30px', height:'20px'}"></p-button>
-                                    <h6 class="mt-1 mx-2">5</h6>
+                                    <h6 class="mt-1 mx-2">{{product.count}}</h6>
                                     <p-button severity="success" icon="pi pi-plus" [style]="{width:'30px'}"
                                         [raised]="true" [style]="{width:'30px', height:'20px'}"></p-button>
                                 </div>
@@ -59,14 +60,13 @@
                     <ng-template pTemplate="summary">
                         <div class="d-flex justify-content-between">
                             <div class="flex align-items-center justify-content-between">
-                                Total Price Is : 2500 EGP
+                                Total Price Is : {{products.data.totalCartPrice }} EGP
                             </div>
 
                             <div>
                                 <p-button label="Checkout" [raised]="true" severity="info"></p-button>
                             </div>
                         </div>
-
                     </ng-template>
 
                 </p-table>
