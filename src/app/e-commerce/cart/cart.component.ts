@@ -9,7 +9,10 @@ import { CartProduct, Data } from '../../interfaces/cart-product';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+  quantity: number = 1;
+  totalPrice: number = 0;
   noProducts: boolean = true;
+  productID: string = '';
   products: CartProduct = {
     status: '',
     numOfCartItems: 0,
@@ -70,9 +73,8 @@ export class CartComponent implements OnInit {
     this._cartService.getLoggedUserCart().subscribe({
       next: (resp) => {
         this.products = resp;
-        console.log(this.products);
         this._cartService.numOfCartItems.next(this.products.numOfCartItems);
-
+        this.totalPrice = resp.data.totalCartPrice;
         // console.log('this is my cart', this.products);
       },
       error: (err) => {
@@ -98,10 +100,29 @@ export class CartComponent implements OnInit {
     });
   }
 
-  // incrementCount() {
-  //   this.products.data.products.map((x) => {
-  //     x.count++
-  //   });
+  updateProductCount(productID: string, count: number) {
+    this._cartService.UpdateProductQuantity(productID, count).subscribe({
+      next: (res) => {
+        this.products.data.products = res.data.products;
+        this.totalPrice = res.data.totalCartPrice;
 
+        console.log('updated', this.products.data.products);
+        console.log(res);
+      },
+    });
+  }
+
+  // updateCartQuantity(productId: string, count: number) {
+  //   this._cartService.UpdateProductQuantity(productId, count).subscribe({
+  //     next: (response) => {
+  //       this.products.data.products = response.data.products;
+  //       this.quantity = response.numOfCartItems;
+  //       this.totalPrice = response.data.totalCartPrice;
+  //       console.log(response);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
   // }
 }

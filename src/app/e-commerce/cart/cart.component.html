@@ -44,11 +44,14 @@
 
                             <td>
                                 <div class="d-flex">
-                                    <p-button severity="success" icon="pi pi-minus" [style]="{width:'30px'}"
-                                        [raised]="true" [style]="{width:'30px', height:'20px'}"></p-button>
+
+                                    <p-button (click)=" updateProductCount(product.product._id,product.count-1)"
+                                        severity="success" icon="pi pi-minus" [style]="{width:'30px'}"
+                                        [style]="{width:'30px', height:'20px'}"></p-button>
                                     <h6 class="mt-1 mx-2">{{product.count}}</h6>
-                                    <p-button severity="success" icon="pi pi-plus" [style]="{width:'30px'}"
-                                        [raised]="true" [style]="{width:'30px', height:'20px'}"></p-button>
+                                    <p-button (click)=" updateProductCount(product.product._id,product.count+1)"
+                                        severity="success" icon="pi pi-plus" [style]="{width:'30px'}" [raised]="true"
+                                        [style]="{width:'30px', height:'20px'}"></p-button>
                                 </div>
                             </td>
                             <td>
@@ -60,7 +63,7 @@
                     <ng-template pTemplate="summary">
                         <div class="d-flex justify-content-between">
                             <div class="flex align-items-center justify-content-between">
-                                Total Price Is : {{products.data.totalCartPrice }} EGP
+                                Total Price Is : {{totalPrice}} EGP
                             </div>
 
                             <div>

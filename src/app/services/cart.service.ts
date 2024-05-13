@@ -26,4 +26,12 @@ export class CartService {
   removeLoggedUserCart(): Observable<any> {
     return this._httpClient.delete(`${this.routeBaseUrl}/api/v1/cart`);
   }
+  UpdateProductQuantity(productID: string, proCount: number): Observable<any> {
+    return this._httpClient.put(
+      `${this.routeBaseUrl}/api/v1/cart/${productID}`,
+      {
+        count: proCount,
+      }
+    );
+  }
 }
