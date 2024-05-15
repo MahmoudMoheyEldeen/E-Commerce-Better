@@ -41,12 +41,10 @@ export class HeaderComponent implements OnInit {
     private _confirmService: ConfirmationService,
     private _route: Router,
     private _authService: AuthService,
-    private _cartService: CartService
+    public _cartService: CartService
   ) {}
 
-  ngOnInit(): void {
-    this.numOfCartProducts = this._cartService.numOfCartItems.next(5);
-  }
+  ngOnInit(): void {}
 
   confirm() {
     console.log('sadasd');

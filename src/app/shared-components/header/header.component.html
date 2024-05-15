@@ -49,9 +49,20 @@
 
 
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link " routerLink="/E-Commerce/wishList"><span class="link-text mx-1">Wishlist </span>
                     <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </a>
+            </li> -->
+            <li class="nav-item position-relative">
+                <a class="nav-link" routerLink="/E-Commerce/wishList"><span class="link-text mx-1">WishList</span>
+                    <i class="pi pi-heart" style="font-size: 1rem"></i>
+                    <div class="cart-noti">
+                        <i class="pi pi-circle-fill" style="font-size: 1rem"></i>
+                        <div class="text-noti">
+                            <p class="text-white">{{this._cartService.numOfWishListItems.getValue()}}</p>
+                        </div>
+                    </div>
                 </a>
             </li>
             <li class="nav-item position-relative">
@@ -60,7 +71,7 @@
                     <div class="cart-noti">
                         <i class="pi pi-circle-fill" style="font-size: 1rem"></i>
                         <div class="text-noti">
-                            <p class="text-white">{{numOfCartProducts}}</p>
+                            <p class="text-white">{{this._cartService.numOfCartItems.getValue()}}</p>
                         </div>
                     </div>
                 </a>

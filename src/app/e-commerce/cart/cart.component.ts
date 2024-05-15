@@ -73,6 +73,7 @@ export class CartComponent implements OnInit {
     this._cartService.getLoggedUserCart().subscribe({
       next: (resp) => {
         this.products = resp;
+        console.log('this is my cart', this.products.data.products);
         this._cartService.numOfCartItems.next(this.products.numOfCartItems);
         this.totalPrice = resp.data.totalCartPrice;
         // console.log('this is my cart', this.products);
@@ -92,7 +93,7 @@ export class CartComponent implements OnInit {
           this.products.data.products = [];
           this.products.data.totalCartPrice = 0;
           this.products.data.products.length = 0;
-          this._cartService.numOfCartItems.next(resp.numOfCartItems);
+          this._cartService.numOfCartItems.next(0);
           console.log(resp);
           this.getLoggedUserCart();
         }
@@ -112,17 +113,15 @@ export class CartComponent implements OnInit {
     });
   }
 
-  // updateCartQuantity(productId: string, count: number) {
-  //   this._cartService.UpdateProductQuantity(productId, count).subscribe({
-  //     next: (response) => {
-  //       this.products.data.products = response.data.products;
-  //       this.quantity = response.numOfCartItems;
-  //       this.totalPrice = response.data.totalCartPrice;
-  //       console.log(response);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
+  removeProduct(productID: any) {
+    this._cartService.deleteSpecificProductToCart(productID).subscribe({
+      next: (resp) => {
+        console.log('this is id', productID);
+        this._cartService.numOfCartItems.next(resp.numOfCartItems);
+        this.products.data.products = resp.data.products;
+        this.totalPrice = resp.data.totalCartPrice;
+        console.log(resp);
+      },
+    });
+  }
 }

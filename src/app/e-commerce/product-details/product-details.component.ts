@@ -91,9 +91,26 @@ export class ProductDetailsComponent implements OnInit {
     this._route.params.subscribe((params) => {
       this.ProductId = params['id'];
       console.log('this is id for post ', this.ProductId);
+      // this._cartService.numOfCartItems.next(params.numOfCartItems);
     });
     this._cartService.postProductToCart(this.ProductId).subscribe({
       next: (resp) => {
+        this._cartService.numOfCartItems.next(resp.numOfCartItems);
+
+        console.log(resp);
+      },
+    });
+  }
+  addProductToWishList() {
+    this._route.params.subscribe((params) => {
+      this.ProductId = params['id'];
+      console.log('this is id for post ', this.ProductId);
+      // this._cartService.numOfCartItems.next(params.numOfCartItems);
+    });
+    this._cartService.postProductToWishList(this.ProductId).subscribe({
+      next: (resp) => {
+        this._cartService.numOfWishListItems.next(resp.count);
+
         console.log(resp);
       },
     });

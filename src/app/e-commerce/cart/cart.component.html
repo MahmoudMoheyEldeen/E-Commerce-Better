@@ -55,7 +55,8 @@
                                 </div>
                             </td>
                             <td>
-                                <p-button severity="danger" icon="pi pi-times" size="small" [raised]="true"
+                                <p-button (onClick)="removeProduct(product.product._id)" severity="danger"
+                                    icon="pi pi-times" size="small" [raised]="true"
                                     [style]="{width:'10px', height:'20px'}"></p-button>
                             </td>
                         </tr>
