@@ -45,3 +45,22 @@
     font-style: normal;
     font-size: 1.5rem;
 }
+
+
+.cart-noti {
+    position: absolute;
+    color: red;
+
+    left: 55px;
+    top: 0;
+}
+
+.text-noti {
+    position: absolute;
+    top: 0px;
+    left: 4px;
+
+    p {
+        font-size: 15px;
+    }
+}

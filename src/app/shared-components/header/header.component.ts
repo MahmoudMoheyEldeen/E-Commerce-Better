@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { AppComponent } from '../../app.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -34,14 +35,18 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   visible: boolean = false;
+  numOfCartProducts: any = 0;
 
   constructor(
     private _confirmService: ConfirmationService,
     private _route: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _cartService: CartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.numOfCartProducts = this._cartService.numOfCartItems.next(5);
+  }
 
   confirm() {
     console.log('sadasd');
