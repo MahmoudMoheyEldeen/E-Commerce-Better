@@ -62,7 +62,7 @@ export class CartService {
     );
   }
 
-  postProductToWishList(productID: any): Observable<any> {
+  postProductToWishList(productID: string): Observable<any> {
     return this._httpClient.post(`${this.routeBaseUrl}/api/v1/wishlist`, {
       productId: productID,
     });

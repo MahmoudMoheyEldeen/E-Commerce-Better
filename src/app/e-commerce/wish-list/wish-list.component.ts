@@ -102,13 +102,13 @@ export class WishListComponent implements OnInit {
     });
   }
 
-  removeProduct(productID: any) {
+  removeProduct(productID: string) {
     this._cartService.deleteSpecificProductinWishList(productID).subscribe({
       next: (resp) => {
         this.products.data = resp.data;
         console.log('this is resp', resp);
         this._cartService.numOfWishListItems.next(resp.data.length);
-
+        this.getLoggedUserWishList();
         console.log(resp);
       },
     });
