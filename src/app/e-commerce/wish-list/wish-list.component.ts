@@ -11,6 +11,14 @@ import { wishDetails } from '../../interfaces/cart-product';
   styleUrls: ['./wish-list.component.scss'],
 })
 export class WishListComponent implements OnInit {
+  constructor(
+    private _productService: ProductsService,
+    private _cartService: CartService
+  ) {}
+  ngOnInit(): void {
+    this.getLoggedUserWishList();
+  }
+
   quantity: number = 1;
   totalPrice: number = 0;
   noProducts: boolean = true;
@@ -60,17 +68,6 @@ export class WishListComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 4;
 
-  constructor(
-    private _productService: ProductsService,
-    private _cartService: CartService
-  ) {
-    // this.products.data.products = this.loadItems(); // Load your items from local storage or another source
-  }
-  ngOnInit(): void {
-    this.getLoggedUserWishList();
-    // this.loadItems();
-  }
-
   cards: any = [];
   images: string[] = [];
   responsiveOptions: any[] = [
@@ -91,11 +88,10 @@ export class WishListComponent implements OnInit {
   getLoggedUserWishList() {
     this._cartService.getLoggedUserWishList().subscribe({
       next: (resp) => {
-        this.products.data = resp.data;
-        console.log('this is my wishlist', resp.data);
-        console.log('this is my wishlist count', resp.count);
+        this.products = resp;
+        console.log('this is my cart', this.products.count);
         this._cartService.numOfWishListItems.next(resp.count);
-        // this.totalPrice = resp.data.totalCartPrice;
+        this.totalPrice = resp.data.totalCartPrice;
         // console.log('this is my cart', this.products);
       },
       error: (err) => {
@@ -109,9 +105,10 @@ export class WishListComponent implements OnInit {
   removeProduct(productID: any) {
     this._cartService.deleteSpecificProductinWishList(productID).subscribe({
       next: (resp) => {
-        console.log('this is id', productID);
-        this._cartService.numOfWishListItems.next(resp.count);
         this.products.data = resp.data;
+        console.log('this is resp', resp);
+        this._cartService.numOfWishListItems.next(resp.data.length);
+
         console.log(resp);
       },
     });

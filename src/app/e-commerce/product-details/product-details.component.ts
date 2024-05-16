@@ -109,7 +109,8 @@ export class ProductDetailsComponent implements OnInit {
     });
     this._cartService.postProductToWishList(this.ProductId).subscribe({
       next: (resp) => {
-        this._cartService.numOfWishListItems.next(resp.count);
+        console.log('length', resp.data.length);
+        this._cartService.numOfWishListItems.next(resp.data.length);
 
         console.log(resp);
       },

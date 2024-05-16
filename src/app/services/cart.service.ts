@@ -12,6 +12,12 @@ export class CartService {
   numOfWishListItems = new BehaviorSubject(0);
 
   constructor(private _httpClient: HttpClient) {
+    this.getLoggedUserWishList().subscribe({
+      next: (resp) => {
+        console.log('this resp from constructor cart service', resp);
+        this.numOfWishListItems.next(resp.count);
+      },
+    });
     this.getLoggedUserCart().subscribe({
       next: (response) => {
         console.log(response);
@@ -20,14 +26,6 @@ export class CartService {
           'this is the number of cart items come from service',
           this.numOfCartItems
         );
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-    this.getLoggedUserWishList().subscribe({
-      next: (response) => {
-        this.numOfWishListItems.next(response.count);
       },
       error: (err) => {
         console.log(err);
@@ -65,10 +63,9 @@ export class CartService {
   }
 
   postProductToWishList(productID: any): Observable<any> {
-    return this._httpClient.post(
-      'https://ecommerce.routemisr.com/api/v1/wishlist',
-      { productId: productID }
-    );
+    return this._httpClient.post(`${this.routeBaseUrl}/api/v1/wishlist`, {
+      productId: productID,
+    });
   }
 
   getLoggedUserWishList(): Observable<any> {
