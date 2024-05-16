@@ -6,6 +6,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { WishListComponent } from './wish-list/wish-list.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AuthGuard } from '../auth.guard';
+import { AddressComponent } from './address/address.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'address',
+    component: AddressComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard],
   },

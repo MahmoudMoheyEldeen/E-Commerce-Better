@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-lg-8 shipping-col d-flex flex-column justify-content-center align-items-center">
+            <div class="card px-4 py-4">
+                <form [formGroup]=shippingAddress (ngSubmit)="submitShippingAddress()">
+                    <div class="d-flex flex-column mb-3">
+                        <label for="">City</label>
+                        <input formControlName="city" type="text" pInputText />
+                    </div>
+                    <div class="d-flex flex-column mb-3">
+                        <label for="">Address in details</label>
+                        <input formControlName="details" type="text" pInputText />
+                    </div>
+                    <div class="d-flex flex-column phone mb-3">
+                        <label for="">Phone</label>
+                        <input formControlName="phone" type="number" pInputText />
+                    </div>
+                    <div class=" d-flex justify-content-center mt-5">
+                        <button class="checkout">Continue To Pay</button>
+
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
