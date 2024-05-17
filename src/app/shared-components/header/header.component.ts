@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
     this._authService.removeToken();
     this._cartService.numOfCartItems.next(0);
     this._cartService.numOfWishListItems.next(0);
+    this._route.navigateByUrl('/E-Commerce/home');
   }
 
   isLogged(): boolean {
