@@ -3,7 +3,7 @@
     <div class="row row-for-allProducts pt-2">
         <div class="col-12">
             <div class="card">
-                <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
+                <p-table [value]="cartItems" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
                     [showCurrentPageReport]="true"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[5,10,15]">
@@ -13,7 +13,7 @@
                                 <p-button label="Remove All Items" severity="danger" icon="pi pi-times"></p-button>
                             </div>
                             <div class=" mt-1">
-                                Your Orders
+                                Your Orders is {{products.results}}
                             </div>
                             <div class="">
                                 <p-button label="Home" icon="pi pi-home" routerLink="/E-Commerce/home"></p-button>
@@ -22,7 +22,7 @@
                     </ng-template>
                     <ng-template let-product pTemplate="header">
                         <tr>
-                            <th>ID</th>
+                            <th>Is Delivered</th>
                             <th>Title</th>
                             <th>Image</th>
                             <th>Price</th>
@@ -33,14 +33,14 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
-                        <tr class="product-data" routerLink="/E-Commerce/productDetails/{{product.id}}">
-                            <td>{{product.id}}</td>
-                            <td>{{product.title|showThreeString}}</td>
-                            <td><img [src]="product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
+                        <tr class="product-data">
+                            <td>{{product.isDelivered
+                                }}</td>
+                            <td>{{product.product.title}}</td>
+                            <td><img [src]="product.product.imageCover
+                                " [alt]="product.name" width="100" class="shadow-4" /></td>
                             <td>{{product.price}}</td>
                             <td>{{product.category}}</td>
-                            <td><p-rating [ngModel]="product.rating.rate" [readonly]="true" [cancel]="false"></p-rating>
-                            </td>
 
                             <td><p-tag [value]="product.inventoryStatus"
                                     [severity]="getSeverity(product.inventoryStatus)" /></td>

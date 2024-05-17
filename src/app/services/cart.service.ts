@@ -81,4 +81,8 @@ export class CartService {
       `${this.routeBaseUrl}/api/v1/wishlist/${productID}`
     );
   }
+
+  getAllOrders(): Observable<any> {
+    return this._httpClient.get(`${this.routeBaseUrl}/api/v1/orders/`);
+  }
 }
