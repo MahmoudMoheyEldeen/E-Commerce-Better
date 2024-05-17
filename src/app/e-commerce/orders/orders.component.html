@@ -27,6 +27,8 @@
                             <th>Is Paid</th>
                             <th>Title</th>
                             <th>Image</th>
+                            <th>Count</th>
+                            <th>Price</th>
                             <th>Created At</th>
                             <th>Payment Method</th>
 
@@ -43,6 +45,8 @@
                             <td>{{product.product.title}}</td>
                             <td><img [src]="product.product.imageCover
                                 " [alt]="product.name" width="100" class="shadow-4" /></td>
+                            <td>{{product.count}}</td>
+                            <td>{{product.price}}</td>
                             <td>{{data[i].createdAt
                                 }}</td>
                             <td>{{data[i].
