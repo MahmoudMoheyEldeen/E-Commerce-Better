@@ -22,6 +22,8 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
 import { InputTextModule } from 'primeng/inputtext';
 import { AddressComponent } from './address/address.component';
 import { AllOrdersComponent } from './all-orders/all-orders.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -52,13 +54,8 @@ import { AllOrdersComponent } from './all-orders/all-orders.component';
     InputTextModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastModule,
   ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: AuthInterceptor,
-  //     multi: true,
-  //   },
-  // ],
+  providers: [MessageService],
 })
 export class ECommerceModule {}

@@ -3,6 +3,8 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../interfaces/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,8 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class HomeComponent implements OnInit {
   constructor(
+    private _authService: AuthService,
+    private messageService: MessageService,
     private _productService: ProductsService,
     private _router: Router,
     private _route: ActivatedRoute,
@@ -192,13 +196,26 @@ export class HomeComponent implements OnInit {
   }
 
   addProductToCart(productId: string) {
-    this._cartService.postProductToCart(productId).subscribe({
-      next: (resp) => {
-        this._cartService.numOfCartItems.next(resp.numOfCartItems);
+    if (this._authService.isLogged()) {
+      this._cartService.postProductToCart(productId).subscribe({
+        next: (resp) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Successfully added to cart',
+          });
+          this._cartService.numOfCartItems.next(resp.numOfCartItems);
 
-        console.log(resp);
-      },
-    });
+          console.log(resp);
+        },
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Warning',
+        detail: 'Please login',
+      });
+    }
   }
 
   addProductToWishList(productId: string) {

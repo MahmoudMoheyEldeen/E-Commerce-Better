@@ -4,6 +4,8 @@ import { Product, Rating } from '../../interfaces/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CartService } from 'src/app/services/cart.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-details',
@@ -50,6 +52,8 @@ export class ProductDetailsComponent implements OnInit {
   ];
 
   constructor(
+    private _authService: AuthService,
+    private messageService: MessageService,
     private _productService: ProductsService,
     private _cartService: CartService,
     private _route: ActivatedRoute
@@ -87,33 +91,73 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  addProductToCart() {
-    this._route.params.subscribe((params) => {
-      this.ProductId = params['id'];
-      console.log('this is id for post ', this.ProductId);
-      // this._cartService.numOfCartItems.next(params.numOfCartItems);
-    });
-    this._cartService.postProductToCart(this.ProductId).subscribe({
-      next: (resp) => {
-        this._cartService.numOfCartItems.next(resp.numOfCartItems);
+  // addProductToCart() {
+  //   this._route.params.subscribe((params) => {
+  //     this.ProductId = params['id'];
+  //     console.log('this is id for post ', this.ProductId);
+  //     // this._cartService.numOfCartItems.next(params.numOfCartItems);
+  //   });
+  //   this._cartService.postProductToCart(this.ProductId).subscribe({
+  //     next: (resp) => {
+  //       this._cartService.numOfCartItems.next(resp.numOfCartItems);
 
-        console.log(resp);
-      },
-    });
+  //       console.log(resp);
+  //     },
+  //   });
+  // }
+  addProductToCart() {
+    if (this._authService.isLogged()) {
+      this._route.params.subscribe((params) => {
+        this.ProductId = params['id'];
+        console.log('this is id for post ', this.ProductId);
+        // this._cartService.numOfCartItems.next(params.numOfCartItems);
+      });
+      this._cartService.postProductToCart(this.ProductId).subscribe({
+        next: (resp) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Successfully added to cart',
+          });
+          this._cartService.numOfCartItems.next(resp.numOfCartItems);
+
+          console.log(resp);
+        },
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Warning',
+        detail: 'Please login',
+      });
+    }
   }
   addProductToWishList() {
-    this._route.params.subscribe((params) => {
-      this.ProductId = params['id'];
-      console.log('this is id for post ', this.ProductId);
-      // this._cartService.numOfCartItems.next(params.numOfCartItems);
-    });
-    this._cartService.postProductToWishList(this.ProductId).subscribe({
-      next: (resp) => {
-        console.log('length', resp.data.length);
-        this._cartService.numOfWishListItems.next(resp.data.length);
+    if (this._authService.isLogged()) {
+      this._route.params.subscribe((params) => {
+        this.ProductId = params['id'];
+        console.log('this is id for post ', this.ProductId);
+        // this._cartService.numOfCartItems.next(params.numOfCartItems);
+      });
+      this._cartService.postProductToWishList(this.ProductId).subscribe({
+        next: (resp) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Successfully added to WishList',
+          });
+          console.log('length', resp.data.length);
+          this._cartService.numOfWishListItems.next(resp.data.length);
 
-        console.log(resp);
-      },
-    });
+          console.log(resp);
+        },
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Warning',
+        detail: 'Please login',
+      });
+    }
   }
 }
