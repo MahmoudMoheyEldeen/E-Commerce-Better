@@ -7,7 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { ButtonModule } from 'primeng/button';
 import { Paginator, PaginatorModule } from 'primeng/paginator';
@@ -21,6 +21,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 import { InputTextModule } from 'primeng/inputtext';
 import { AddressComponent } from './address/address.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddressComponent } from './address/address.component';
     WishListComponent,
     OrdersComponent,
     AddressComponent,
+    AllOrdersComponent,
   ],
   imports: [
     CommonModule,

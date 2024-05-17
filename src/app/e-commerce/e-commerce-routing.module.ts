@@ -26,7 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'address',
+    path: 'address/:id',
     component: AddressComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard],
@@ -43,7 +43,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'Orders',
+    path: 'home/allorders',
     component: OrdersComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard],

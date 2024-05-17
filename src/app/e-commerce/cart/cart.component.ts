@@ -73,6 +73,7 @@ export class CartComponent implements OnInit {
     this._cartService.getLoggedUserCart().subscribe({
       next: (resp) => {
         this.products = resp;
+        console.log('all from get cart', this.products);
         console.log('this is my cart', this.products.data.products);
         this._cartService.numOfCartItems.next(this.products.numOfCartItems);
         this.totalPrice = resp.data.totalCartPrice;
