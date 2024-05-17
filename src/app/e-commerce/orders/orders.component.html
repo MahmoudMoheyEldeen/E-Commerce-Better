@@ -22,32 +22,33 @@
                     </ng-template>
                     <ng-template let-product pTemplate="header">
                         <tr>
+                            <th>ID</th>
                             <th>Is Delivered</th>
+                            <th>Is Paid</th>
                             <th>Title</th>
                             <th>Image</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Rating</th>
-                            <th></th>
-                            <th></th>
+                            <th>Created At</th>
+                            <th>Payment Method</th>
+
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-product>
+                    <ng-template pTemplate="body" let-product let-i="rowIndex">
                         <tr class="product-data">
-                            <td>{{product.isDelivered
-                                }}</td>
+                            <td>{{ data[i]?.id || '-' }}</td>
+                            <td>{{ data[i]?.isDelivered ? 'Yes' : 'No'}}</td>
+
+                            <td>{{ data[i]?.
+                                isPaid
+                                ? 'Yes' : 'No' }}</td>
                             <td>{{product.product.title}}</td>
                             <td><img [src]="product.product.imageCover
                                 " [alt]="product.name" width="100" class="shadow-4" /></td>
-                            <td>{{product.price}}</td>
-                            <td>{{product.category}}</td>
+                            <td>{{data[i].createdAt
+                                }}</td>
+                            <td>{{data[i].
+                                paymentMethodType
+                                }}</td>
 
-                            <td><p-tag [value]="product.inventoryStatus"
-                                    [severity]="getSeverity(product.inventoryStatus)" /></td>
-                            <td>
-                                <p-button severity="danger" icon="pi pi-times" size="small" [raised]="true"
-                                    [style]="{width:'10px',height:'20px'}"></p-button>
-                            </td>
 
                         </tr>
                     </ng-template>
