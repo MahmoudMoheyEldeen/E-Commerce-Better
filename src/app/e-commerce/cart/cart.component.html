@@ -34,7 +34,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
-                        <tr class="product-data" routerLink="/E-Commerce/productDetails/{{product.id}}">
+                        <tr class="product-data">
 
                             <td>{{product.product.title}}</td>
                             <td><img [src]="product.product.imageCover" [alt]="product.name" width="100"

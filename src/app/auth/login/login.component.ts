@@ -19,6 +19,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Token } from '@angular/compiler';
 import { jwtDecode } from 'jwt-decode';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -56,6 +57,7 @@ export class LoginComponent implements OnInit {
     }),
   });
   constructor(
+    private _cartService: CartService,
     private _el: ElementRef,
     private _route: Router,
     private _authService: AuthService
@@ -93,6 +95,19 @@ export class LoginComponent implements OnInit {
         console.log('this is decode of token', this._authService.decodeToken());
         this.userName = this._authService.decodeToken().name;
         console.log('this is the name of user', this.userName);
+        this._cartService.getLoggedUserWishList().subscribe({
+          next: (resp) => {
+            console.log('this resp from constructor cart service', resp);
+            this._cartService.numOfWishListItems.next(resp.count);
+          },
+        });
+
+        this._cartService.getLoggedUserCart().subscribe({
+          next: (resp) => {
+            console.log('this resp from constructor cart service', resp);
+            this._cartService.numOfCartItems.next(resp.numOfCartItems);
+          },
+        });
         this.closeDialog.emit();
         this._route.navigateByUrl('/E-Commerce/home');
       },
