@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
         this.userName = this._authService.decodeToken().name;
         console.log('this is the name of user', this.userName);
         this.closeDialog.emit();
-        this._route.navigateByUrl('/E-Commerce/cart');
+        this._route.navigateByUrl('/E-Commerce/home');
       },
       error: (err) => {
         console.log('error', err);

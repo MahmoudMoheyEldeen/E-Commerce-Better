@@ -1,7 +1,8 @@
 import { Component, OnInit, afterNextRender } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../interfaces/product';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,11 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   constructor(
     private _productService: ProductsService,
-    private _router: Router
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _cartService: CartService
   ) {}
+  ProductId: string = '';
   responsiveOptions: any[] | undefined;
   categoriesImages: any[] = [
     {
@@ -187,13 +191,34 @@ export class HomeComponent implements OnInit {
     return [limit, limit * 2, limit * 3];
   }
 
-  addProductToWishList() {
-    this._productService
-      .postProductToWishList('6428ebc6dc1175abc65ca0b9')
-      .subscribe({
-        next: (resp) => {
-          console.log(resp);
-        },
-      });
+  addProductToCart(productId: string) {
+    this._cartService.postProductToCart(productId).subscribe({
+      next: (resp) => {
+        this._cartService.numOfCartItems.next(resp.numOfCartItems);
+
+        console.log(resp);
+      },
+    });
+  }
+
+  addProductToWishList(productId: string) {
+    this._cartService.postProductToWishList(productId).subscribe({
+      next: (resp) => {
+        console.log('length', resp.data.length);
+        this._cartService.numOfWishListItems.next(resp.data.length);
+
+        console.log(resp);
+      },
+    });
+  }
+
+  handleButtonClick(event: MouseEvent, productId: any) {
+    event.stopPropagation();
+    this.addProductToCart(productId);
+  }
+
+  IconhandleButtonClick(event: MouseEvent, productId: any) {
+    event.stopPropagation();
+    this.addProductToWishList(productId);
   }
 }

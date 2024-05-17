@@ -62,6 +62,8 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this._authService.removeToken();
+    this._cartService.numOfCartItems.next(0);
+    this._cartService.numOfWishListItems.next(0);
   }
 
   isLogged(): boolean {
