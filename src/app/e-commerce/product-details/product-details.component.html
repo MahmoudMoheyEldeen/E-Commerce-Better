@@ -5,7 +5,8 @@
         </div>
         <div class="my-3">
             <p-toast />
-            <i class="pi pi-heart-fill mr-3" style="font-size: 2rem" (click)="addProductToWishList()"></i>
+            <i class="pi pi-heart-fill mr-3" style="font-size: 2rem" (click)="addProductToWishList()"
+                [ngStyle]="{'color':exist?'red':'grey'}"></i>
             <p-button label="Add To Cart" severity="success" icon="pi pi-cart-plus" [raised]="true"
                 (onClick)="addProductToCart()"></p-button>
         </div>

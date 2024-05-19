@@ -13,6 +13,11 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit {
+  allWishListItems: any = [
+    '6428ebc6dc1175abc65ca0b9',
+    '6428ebc6dc1175abc65ca0b5',
+  ];
+  exist: boolean = false;
   ProductId: string = ' ';
   product: Product = {
     sold: 0,
@@ -61,6 +66,8 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductDetails();
+    console.log('this is id for this product', this.ProductId);
+    this.ifExist();
 
     this.responsiveOptions = [
       {
@@ -91,20 +98,6 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  // addProductToCart() {
-  //   this._route.params.subscribe((params) => {
-  //     this.ProductId = params['id'];
-  //     console.log('this is id for post ', this.ProductId);
-  //     // this._cartService.numOfCartItems.next(params.numOfCartItems);
-  //   });
-  //   this._cartService.postProductToCart(this.ProductId).subscribe({
-  //     next: (resp) => {
-  //       this._cartService.numOfCartItems.next(resp.numOfCartItems);
-
-  //       console.log(resp);
-  //     },
-  //   });
-  // }
   addProductToCart() {
     if (this._authService.isLogged()) {
       this._route.params.subscribe((params) => {
@@ -158,6 +151,18 @@ export class ProductDetailsComponent implements OnInit {
         summary: 'Warning',
         detail: 'Please login',
       });
+    }
+  }
+  ifExist() {
+    this.allWishListItems.map((x: any) => {
+      if (this.ProductId == x) {
+        this.exist = true;
+      }
+    });
+    if (this.exist) {
+      console.log('found');
+    } else {
+      console.log('not found');
     }
   }
 }
