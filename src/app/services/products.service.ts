@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ProductsService {
   baseUrl: string = 'https://fakestoreapi.com';
   routeBaseUrl: string = 'https://ecommerce.routemisr.com';
+  allWishlistItems: any = [];
 
   constructor(private _httpClient: HttpClient) {}
 

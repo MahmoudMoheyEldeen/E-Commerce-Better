@@ -20,6 +20,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Token } from '@angular/compiler';
 import { jwtDecode } from 'jwt-decode';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class LoginComponent implements OnInit {
   @Output() closeDialog = new EventEmitter<void>();
   isRegistered: boolean = true;
+  // loginwishlist: any = [];
   username: any = {
     id: '',
     name: '',
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     iat: 0,
     exp: 0,
   };
+  productID: string = '';
   userName: string = '';
   userToken: any;
 
@@ -60,7 +63,8 @@ export class LoginComponent implements OnInit {
     private _cartService: CartService,
     private _el: ElementRef,
     private _route: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _productService: ProductsService
   ) {}
 
   ngOnInit(): void {
@@ -110,6 +114,20 @@ export class LoginComponent implements OnInit {
         });
         this.closeDialog.emit();
         this._route.navigateByUrl('/E-Commerce/home');
+
+        /////////////////// to get all wishlist items
+        // this._cartService.getLoggedUserWishList().subscribe({
+        //   next: (x) => {
+        //     x.data.map((x: any) => {
+        //       this.productID = x.id;
+        //       this.loginwishlist.push(this.productID);
+        //     });
+        //     console.log('wish from login', this.loginwishlist);
+        //     this._productService.allWishlistItems = this.loginwishlist;
+        //   },
+        // });
+
+        ////////////////////
       },
       error: (err) => {
         console.log('error', err);

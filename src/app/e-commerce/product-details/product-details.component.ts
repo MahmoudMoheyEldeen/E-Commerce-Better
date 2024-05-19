@@ -13,11 +13,8 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit {
-  allWishListItems: any = [
-    '6428ebc6dc1175abc65ca0b9',
-    '6428ebc6dc1175abc65ca0b5',
-  ];
   exist: boolean = false;
+  allwishListItems: any = [];
   ProductId: string = ' ';
   product: Product = {
     sold: 0,
@@ -66,8 +63,8 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductDetails();
-    console.log('this is id for this product', this.ProductId);
-    this.ifExist();
+    console.log('arrrrray from product details', this.allwishListItems);
+    // this.ifExist();
 
     this.responsiveOptions = [
       {
@@ -94,6 +91,16 @@ export class ProductDetailsComponent implements OnInit {
       next: (resp) => {
         this.product = resp.data;
         console.log('this is specific product ', this.product);
+
+        this._cartService.getLoggedUserWishList().subscribe({
+          next: (x) => {
+            x.data.map((x: any) => {
+              this.ProductId = x.id;
+              this.allwishListItems.push(this.ProductId);
+            });
+            this.ifExist();
+          },
+        });
       },
     });
   }
@@ -134,6 +141,7 @@ export class ProductDetailsComponent implements OnInit {
       });
       this._cartService.postProductToWishList(this.ProductId).subscribe({
         next: (resp) => {
+          this.exist = true;
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -154,15 +162,20 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   ifExist() {
-    this.allWishListItems.map((x: any) => {
+    console.log('from is exist function', this.allwishListItems);
+    console.log('id for this product from is exist', this.ProductId);
+    this._route.params.subscribe((params) => {
+      this.ProductId = params['id'];
+      console.log('this is id for post ', this.ProductId);
+      // this._cartService.numOfCartItems.next(params.numOfCartItems);
+    });
+
+    this.allwishListItems.map((x: any) => {
+      console.log('xxxxxxxxxxxxxxxxxxxxxx', this.ProductId);
+
       if (this.ProductId == x) {
         this.exist = true;
       }
     });
-    if (this.exist) {
-      console.log('found');
-    } else {
-      console.log('not found');
-    }
   }
 }
